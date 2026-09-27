@@ -65,7 +65,9 @@ if (process.argv[2] === 'start') {
 } else if (process.argv[2] === 'release') {
   const tag = process.env.CI_COMMIT_TAG
   if (!tag || !/^v\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/.test(tag)) {
-    throw new Error('A semantic version tag is required to publish a GitHub release.')
+    throw new Error(
+      'A semantic version tag is required to publish a GitHub release.',
+    )
   }
   await request(`/repos/${owner}/${repository}/releases`, {
     tag_name: tag,
