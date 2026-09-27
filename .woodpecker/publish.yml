@@ -1,6 +1,9 @@
 when:
   - event: tag
     ref: refs/tags/v*
+concurrency:
+  limit: 1
+  group: package-ui
 
 steps:
   - name: deployment-start
