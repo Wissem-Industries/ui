@@ -41,6 +41,16 @@ steps:
     depends_on:
       - check
 
+  - name: create-release
+    image: oven/bun:alpine
+    environment:
+      GITHUB_PACKAGES_TOKEN:
+        from_secret: github_packages_token
+    commands:
+      - bun .woodpecker/github-deployment.mjs release
+    depends_on:
+      - publish
+
   - name: deployment-success
     image: oven/bun:alpine
     environment:
@@ -51,7 +61,7 @@ steps:
     commands:
       - bun .woodpecker/github-deployment.mjs success
     depends_on:
-      - publish
+      - create-release
 
   - name: deployment-failure
     image: oven/bun:alpine
