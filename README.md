@@ -20,12 +20,9 @@
 </p>
 
 Wissem UI is a Nuxt Layer built with Nuxt 4, Vue 3, Nuxt UI 4 and Tailwind CSS
-4. Applications extend `@wissem-industries/ui` to share the theme and component
-defaults while keeping their own pages and business logic.
-
-The package is a Nuxt Layer built with Nuxt 4, Vue 3, Nuxt UI 4 and Tailwind
-CSS 4. Applications inherit the theme and Nuxt UI configuration by extending
-`@wissem-industries/ui`; no component wrappers are required.
+4. Applications extend `@wissem-industries/ui` to inherit the shared theme and
+component defaults while keeping their own pages and business logic. No
+component wrappers are required.
 
 ## Requirements
 
@@ -120,10 +117,12 @@ Create an archive from this repository:
 bun pm pack
 ```
 
-Then install the generated archive in another Nuxt project:
+The current package creates `wissem-industries-ui-0.5.3.tgz` in the repository
+root. Install that archive from another Nuxt project (adjust the path if the
+repositories are not siblings):
 
 ```bash
-bun add --dev ../wissem-ui/wissem-ui-0.1.0.tgz
+bun add --dev ../Wissem-UI/wissem-industries-ui-0.5.3.tgz
 ```
 
 Use the same `extends: ['@wissem-industries/ui']` and `UApp` configuration shown above.
