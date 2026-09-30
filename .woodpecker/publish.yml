@@ -37,8 +37,7 @@ steps:
         from_secret: github_packages_token
     commands:
       - printf '//npm.pkg.github.com/:_authToken=%s\n' "$${GITHUB_PACKAGES_TOKEN}" > /root/.npmrc
-      - VERSION=$(bun -p "require('./package.json').version")
-      - test "v$${VERSION}" = "$${CI_COMMIT_TAG}"
+      - test "v$(bun -p 'require("./package.json").version')" = "$${CI_COMMIT_TAG}"
       - bun publish --ignore-scripts --tolerate-republish
       - rm -f /root/.npmrc
     depends_on:
@@ -74,5 +73,12 @@ steps:
       DEPLOYMENT_STATUS_DESCRIPTION: Échec du pipeline de publication
     commands:
       - bun .woodpecker/github-deployment.mjs failure
+    depends_on:
+      - deployment-start
+      - install
+      - check
+      - publish
+      - create-release
+      - deployment-success
     when:
       - status: [failure]
