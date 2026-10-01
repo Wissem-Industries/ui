@@ -15,36 +15,56 @@
 :root,
 .light {
   --wi-glass-tint: var(--color-white);
-  --wi-glass-rim: rgb(255 255 255 / 0.85);
-  --wi-glass-rim-soft: rgb(255 255 255 / 0.3);
-  --wi-glass-edge: rgb(0 0 0 / 0.07);
-  --wi-glass-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 12px 32px rgb(0 0 0 / 0.1);
-  --wi-glass-o-regular: 70%;
-  --wi-glass-o-clear: 42%;
-  --wi-glass-o-thick: 88%;
+  --wi-glass-rim: rgb(255 255 255 / 1);
+  --wi-glass-rim-soft: rgb(255 255 255 / 0.45);
+  --wi-glass-edge: rgb(0 0 0 / 0.08);
+  --wi-glass-shadow:
+    0 1px 2px rgb(0 0 0 / 0.05), 0 10px 28px rgb(0 0 0 / 0.1), 0 24px 48px -12px rgb(0 0 0 / 0.12);
+  --wi-glass-sheen-a: rgb(255 255 255 / 0.55);
+  --wi-glass-sheen-b: rgb(255 255 255 / 0.1);
+  --wi-glass-inner:
+    inset 0 1px 0 rgb(255 255 255 / 0.9), inset 0 -1px 0 rgb(0 0 0 / 0.04),
+    inset 0 0 18px rgb(255 255 255 / 0.5);
+  --wi-glass-o-regular: 38%;
+  --wi-glass-o-clear: 22%;
+  --wi-glass-o-thick: 82%;
 }
 
 .dark {
-  --wi-glass-tint: var(--ui-color-neutral-900);
-  --wi-glass-rim: rgb(255 255 255 / 0.28);
-  --wi-glass-rim-soft: rgb(255 255 255 / 0.06);
-  --wi-glass-edge: rgb(0 0 0 / 0.5);
-  --wi-glass-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px rgb(0 0 0 / 0.45);
-  --wi-glass-o-regular: 76%;
-  --wi-glass-o-clear: 50%;
-  --wi-glass-o-thick: 92%;
+  --wi-glass-tint: var(--ui-color-neutral-800);
+  --wi-glass-rim: rgb(255 255 255 / 0.75);
+  --wi-glass-rim-soft: rgb(255 255 255 / 0.16);
+  --wi-glass-edge: rgb(0 0 0 / 0.55);
+  --wi-glass-shadow:
+    0 1px 2px rgb(0 0 0 / 0.35), 0 12px 32px rgb(0 0 0 / 0.5), 0 28px 56px -16px rgb(0 0 0 / 0.6);
+  --wi-glass-sheen-a: rgb(255 255 255 / 0.2);
+  --wi-glass-sheen-b: rgb(255 255 255 / 0.04);
+  --wi-glass-inner:
+    inset 0 1.5px 0 rgb(255 255 255 / 0.35), inset 0 -1px 0 rgb(255 255 255 / 0.08),
+    inset 0 0 24px rgb(255 255 255 / 0.09);
+  --wi-glass-o-regular: 42%;
+  --wi-glass-o-clear: 30%;
+  --wi-glass-o-thick: 90%;
 }
 
 .wi-glass {
   --wi-glass-opacity: var(--wi-glass-o-regular);
-  --wi-glass-blur: 22px;
-  --wi-glass-saturate: 180%;
+  --wi-glass-blur: 24px;
+  --wi-glass-saturate: 220%;
   isolation: isolate;
-  background: color-mix(in oklab, var(--wi-glass-tint) var(--wi-glass-opacity), transparent);
-  -webkit-backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate));
-  backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate));
+  /* A light sheen over the tint: translucent glass reads as brighter than what is behind it. */
+  background:
+    linear-gradient(135deg, var(--wi-glass-sheen-a), var(--wi-glass-sheen-b)),
+    linear-gradient(
+      color-mix(in oklab, var(--wi-glass-tint) var(--wi-glass-opacity), transparent),
+      color-mix(in oklab, var(--wi-glass-tint) var(--wi-glass-opacity), transparent)
+    );
+  -webkit-backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate))
+    brightness(1.12);
+  backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate)) brightness(1.12);
   box-shadow:
     0 0 0 1px var(--wi-glass-edge),
+    var(--wi-glass-inner),
     var(--wi-glass-shadow);
 }
 
@@ -61,16 +81,17 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  padding: 1px;
+  padding: 1.5px;
   border-radius: inherit;
   pointer-events: none;
   content: "";
   background: linear-gradient(
     145deg,
     var(--wi-glass-rim),
-    var(--wi-glass-rim-soft) 38%,
-    transparent 62%,
-    var(--wi-glass-rim-soft)
+    var(--wi-glass-rim-soft) 34%,
+    transparent 58%,
+    var(--wi-glass-rim-soft) 82%,
+    var(--wi-glass-rim)
   );
   mask:
     linear-gradient(#000 0 0) content-box,
@@ -79,10 +100,28 @@
   -webkit-mask-composite: xor;
 }
 
+/* Diagonal glare, as light catching the surface. */
+.wi-glass::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(
+    115deg,
+    rgb(255 255 255 / 0.26) 0%,
+    transparent 38%,
+    transparent 70%,
+    rgb(255 255 255 / 0.06) 100%
+  );
+  mix-blend-mode: soft-light;
+}
+
 .wi-glass--clear {
   --wi-glass-opacity: var(--wi-glass-o-clear);
-  --wi-glass-blur: 14px;
-  --wi-glass-saturate: 200%;
+  --wi-glass-blur: 12px;
+  --wi-glass-saturate: 220%;
 }
 
 .wi-glass--thick {
@@ -106,7 +145,8 @@
       var(--wi-glass-shadow);
   }
 
-  .wi-glass::before {
+  .wi-glass::before,
+  .wi-glass::after {
     display: none;
   }
 }
@@ -120,7 +160,8 @@
     border: 1px solid CanvasText;
   }
 
-  .wi-glass::before {
+  .wi-glass::before,
+  .wi-glass::after {
     display: none;
   }
 }

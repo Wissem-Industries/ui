@@ -23,7 +23,11 @@ function normalize(path: string) {
 function isActive(item: WNavbarItem) {
   const path = normalize(route.path)
   const target = normalize(item.to)
-  if (item.exact || target === '/') return path === target
+  // `/en` is a prefix of `/en/projects`: an entry that has siblings below it is exact.
+  const hasChildren = props.items.some(
+    (other) => other !== item && normalize(other.to).startsWith(`${target}/`),
+  )
+  if (item.exact || target === '/' || hasChildren) return path === target
   return path === target || path.startsWith(`${target}/`)
 }
 
