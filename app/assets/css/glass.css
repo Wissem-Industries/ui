@@ -31,26 +31,26 @@
 }
 
 .dark {
-  --wi-glass-tint: var(--ui-color-neutral-800);
-  --wi-glass-rim: rgb(255 255 255 / 0.75);
-  --wi-glass-rim-soft: rgb(255 255 255 / 0.16);
+  --wi-glass-tint: var(--ui-color-neutral-900);
+  --wi-glass-rim: rgb(255 255 255 / 0.3);
+  --wi-glass-rim-soft: rgb(255 255 255 / 0.06);
   --wi-glass-edge: rgb(0 0 0 / 0.55);
   --wi-glass-shadow:
     0 1px 2px rgb(0 0 0 / 0.35), 0 12px 32px rgb(0 0 0 / 0.5), 0 28px 56px -16px rgb(0 0 0 / 0.6);
-  --wi-glass-sheen-a: rgb(255 255 255 / 0.2);
-  --wi-glass-sheen-b: rgb(255 255 255 / 0.04);
+  --wi-glass-sheen-a: rgb(255 255 255 / 0.05);
+  --wi-glass-sheen-b: rgb(255 255 255 / 0.01);
   --wi-glass-inner:
-    inset 0 1.5px 0 rgb(255 255 255 / 0.35), inset 0 -1px 0 rgb(255 255 255 / 0.08),
-    inset 0 0 24px rgb(255 255 255 / 0.09);
-  --wi-glass-o-regular: 42%;
-  --wi-glass-o-clear: 30%;
+    inset 0 1px 0 rgb(255 255 255 / 0.14), inset 0 -1px 0 rgb(255 255 255 / 0.03),
+    inset 0 0 18px rgb(255 255 255 / 0.03);
+  --wi-glass-o-regular: 58%;
+  --wi-glass-o-clear: 36%;
   --wi-glass-o-thick: 90%;
 }
 
 .wi-glass {
   --wi-glass-opacity: var(--wi-glass-o-regular);
-  --wi-glass-blur: 24px;
-  --wi-glass-saturate: 220%;
+  --wi-glass-blur: 22px;
+  --wi-glass-saturate: 180%;
   isolation: isolate;
   /* A light sheen over the tint: translucent glass reads as brighter than what is behind it. */
   background:
@@ -59,9 +59,8 @@
       color-mix(in oklab, var(--wi-glass-tint) var(--wi-glass-opacity), transparent),
       color-mix(in oklab, var(--wi-glass-tint) var(--wi-glass-opacity), transparent)
     );
-  -webkit-backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate))
-    brightness(1.12);
-  backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate)) brightness(1.12);
+  -webkit-backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate));
+  backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate));
   box-shadow:
     0 0 0 1px var(--wi-glass-edge),
     var(--wi-glass-inner),
@@ -81,7 +80,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  padding: 1.5px;
+  padding: 1px;
   border-radius: inherit;
   pointer-events: none;
   content: "";
@@ -90,8 +89,7 @@
     var(--wi-glass-rim),
     var(--wi-glass-rim-soft) 34%,
     transparent 58%,
-    var(--wi-glass-rim-soft) 82%,
-    var(--wi-glass-rim)
+    var(--wi-glass-rim-soft) 100%
   );
   mask:
     linear-gradient(#000 0 0) content-box,
@@ -110,7 +108,7 @@
   content: "";
   background: linear-gradient(
     115deg,
-    rgb(255 255 255 / 0.26) 0%,
+    rgb(255 255 255 / 0.1) 0%,
     transparent 38%,
     transparent 70%,
     rgb(255 255 255 / 0.06) 100%

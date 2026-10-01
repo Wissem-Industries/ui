@@ -25,6 +25,18 @@ html {
   background: var(--ui-bg);
 }
 
+/*
+ * The gutter above already keeps the scrollbar space. The scroll lock of menus
+ * and dialogs adds its own padding on top of it, which shifts the page.
+ */
+body[data-scroll-locked],
+body[style*="padding-right"] {
+  /* biome-ignore lint/complexity/noImportantStyles: overrides an inline style */
+  padding-right: 0 !important;
+  /* biome-ignore lint/complexity/noImportantStyles: overrides an inline style */
+  margin-right: 0 !important;
+}
+
 body {
   min-width: 0;
   background: var(--ui-bg);
