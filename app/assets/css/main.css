@@ -2,38 +2,18 @@
 @import "@nuxt/ui";
 @import "@fontsource-variable/geist";
 @import "@fontsource-variable/geist-mono";
+@import "./tokens.css";
 
 @theme {
   --font-sans: "Geist Variable", "Geist", sans-serif;
   --font-mono: "Geist Mono Variable", "Geist Mono", monospace;
 }
 
-:root {
-  --ui-radius: 0.1875rem;
-  --ui-container: var(--container-6xl);
-}
-
-:root,
-.light {
-  color-scheme: light;
-  --ui-primary: var(--ui-color-primary-600);
-  --ui-bg: var(--ui-color-neutral-50);
-  --ui-bg-muted: var(--ui-color-neutral-100);
-  --ui-bg-elevated: var(--ui-color-neutral-50);
-  --ui-bg-accented: var(--ui-color-neutral-200);
-  --ui-text: var(--ui-color-neutral-900);
-  --ui-text-highlighted: var(--ui-color-neutral-950);
-}
-
-.dark {
-  color-scheme: dark;
-  --ui-primary: var(--ui-color-primary-400);
-  --ui-bg: var(--ui-color-neutral-950);
-  --ui-bg-muted: var(--ui-color-neutral-900);
-  --ui-bg-elevated: var(--ui-color-neutral-950);
-  --ui-bg-accented: var(--ui-color-neutral-800);
-  --ui-text: var(--ui-color-neutral-100);
-  --ui-text-highlighted: var(--ui-color-neutral-50);
+@theme inline {
+  --ease-wi-standard: var(--wi-ease-standard);
+  --ease-wi-out: var(--wi-ease-out);
+  --ease-wi-in-out: var(--wi-ease-in-out);
+  --ease-wi-spring: var(--wi-ease-spring);
 }
 
 html {
@@ -124,22 +104,6 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
-  }
-
-  html,
-  body,
-  .bg-default,
-  .bg-elevated,
-  .bg-muted,
-  .text-default,
-  .text-highlighted,
-  .text-muted,
-  .text-toned,
-  .border-default,
-  .border-muted {
-    transition-duration: 180ms;
-    transition-property: background-color, border-color, color;
-    transition-timing-function: ease;
   }
 }
 

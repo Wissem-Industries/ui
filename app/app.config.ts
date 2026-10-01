@@ -118,7 +118,7 @@ export default defineAppConfig({
     },
     card: {
       slots: {
-        root: 'ring-default/70 shadow-sm',
+        root: 'rounded-xl ring-default/70 shadow-sm',
       },
     },
     navigationMenu: {

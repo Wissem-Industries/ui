@@ -109,6 +109,30 @@ The configuration priority is:
 Nuxt UI defaults < @wissem-industries/ui defaults < application overrides
 ```
 
+## Design tokens
+
+The Layer defines its tokens in `app/assets/css/tokens.css`. Products use them
+and never redefine them locally.
+
+| Group | Tokens | Use |
+| --- | --- | --- |
+| Surfaces | `bg`, `bg-muted`, `bg-elevated`, `bg-accented` | Page, recessed areas, cards and panels, hover states. Cards stand out from the page by their surface, not only by their border. |
+| Radii | `--wi-radius-control`, `--wi-radius-card`, `--wi-radius-panel`, `--wi-radius-pill` | `rounded-md`, `rounded-xl`, `rounded-2xl`, `rounded-full`. Nested elements use the step below their parent's. |
+| Duration | `--wi-duration-instant`, `-fast`, `-base`, `-slow`, `-slower` | 80, 140, 220, 360 and 560 ms. They drop to near zero with `prefers-reduced-motion: reduce`. |
+| Easing | `--wi-ease-standard`, `-out`, `-in-out`, `-spring` | Also available as `ease-wi-standard`, `ease-wi-out`, `ease-wi-in-out` and `ease-wi-spring` utilities. |
+
+In light mode the primary color uses the 600 step so that violet text keeps a
+4.5:1 contrast on the page background.
+
+The playground (`bun run dev`) is the reference for these foundations in light
+and dark mode.
+
+## Icons
+
+Interface icons use Remix (`i-ri-*`) and flags use Circle Flags
+(`i-circle-flags-*`). Lucide is no longer bundled: replace any `i-lucide-*`
+icon of a product with its Remix equivalent when moving to 0.6.
+
 ## Test an unpublished version locally
 
 Create an archive from this repository:
@@ -117,12 +141,12 @@ Create an archive from this repository:
 bun pm pack
 ```
 
-The current package creates `wissem-industries-ui-0.5.5.tgz` in the repository
+The current package creates `wissem-industries-ui-0.6.0.tgz` in the repository
 root. Install that archive from another Nuxt project (adjust the path if the
 repositories are not siblings):
 
 ```bash
-bun add --dev ../Wissem-UI/wissem-industries-ui-0.5.5.tgz
+bun add --dev ../Wissem-UI/wissem-industries-ui-0.6.0.tgz
 ```
 
 Use the same `extends: ['@wissem-industries/ui']` and `UApp` configuration shown above.

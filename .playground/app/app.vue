@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const name = ref('')
-const message = ref('')
 const colorMode = useColorMode()
 const isDark = computed(() => colorMode.value === 'dark')
 
@@ -11,83 +9,31 @@ function toggleColorMode() {
 
 <template>
   <UApp>
-    <UContainer class="py-12">
-      <div class="mx-auto max-w-4xl space-y-8">
-        <div>
-          <div class="flex items-center justify-between gap-4">
-            <UBadge label="Wissem UI" />
-            <UButton
-              label="Toggle theme"
-              color="neutral"
-              variant="ghost"
-              @click="toggleColorMode"
-            />
-          </div>
-
-          <h1 class="mt-3 text-3xl font-semibold">
-            Wissem UI Playground
-          </h1>
-
-          <p class="mt-2 text-muted">
-            Shared Wissem foundations through the Nuxt Layer.
-          </p>
+    <header class="border-b border-default">
+      <UContainer class="flex h-16 items-center justify-between gap-4">
+        <NuxtLink to="/" class="flex items-center gap-2 font-semibold text-highlighted">
+          <img src="/favicon.ico" alt="" width="20" height="20">
+          Wissem UI
+        </NuxtLink>
+        <div class="flex items-center gap-1">
+          <UButton
+            to="/"
+            label="Foundations"
+            color="neutral"
+            variant="ghost"
+            size="sm"
+          />
+          <UButton
+            :icon="isDark ? 'i-ri-sun-line' : 'i-ri-moon-line'"
+            :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+            color="neutral"
+            variant="ghost"
+            size="sm"
+            @click="toggleColorMode"
+          />
         </div>
-
-        <div class="grid gap-6 lg:grid-cols-2">
-          <UCard>
-            <div class="space-y-4">
-              <div class="flex flex-wrap gap-2">
-                <UBadge label="Default" />
-                <UBadge label="Neutral" color="neutral" />
-                <UBadge label="Success" color="success" />
-              </div>
-
-              <div class="flex flex-wrap items-center gap-2">
-                <UBadge color="neutral" variant="soft">
-                  <span class="mr-1.5 size-1.5 rounded-full bg-emerald-500" />
-                  Active
-                </UBadge>
-                <UBadge label="Design" color="neutral" variant="outline" />
-                <UBadge label="Retainer" color="neutral" variant="outline" />
-              </div>
-
-              <div class="flex flex-wrap gap-2">
-                <UButton label="Primary action" />
-                <UButton label="Secondary action" variant="outline" />
-                <UButton
-                  label="Ghost action"
-                  color="neutral"
-                  variant="ghost"
-                />
-              </div>
-            </div>
-          </UCard>
-
-          <UCard>
-            <div class="space-y-4">
-            <UFormField label="Example input">
-              <UInput
-                v-model="name"
-                class="w-full"
-                placeholder="Type something..."
-              />
-            </UFormField>
-
-            <p v-if="name" class="text-sm text-muted">
-              Hello, {{ name }}.
-            </p>
-
-              <UFormField label="Example message">
-                <UTextarea
-                  v-model="message"
-                  class="w-full"
-                  placeholder="Write a message..."
-                />
-              </UFormField>
-            </div>
-          </UCard>
-        </div>
-      </div>
-    </UContainer>
+      </UContainer>
+    </header>
+    <NuxtPage />
   </UApp>
 </template>
