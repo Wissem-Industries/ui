@@ -1,0 +1,93 @@
+/* v-reveal: applied by the directive only to content below the fold. */
+.wi-reveal {
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateY(0.75rem);
+  transition:
+    opacity var(--wi-duration-slower) var(--wi-ease-out),
+    filter var(--wi-duration-slower) var(--wi-ease-out),
+    transform var(--wi-duration-slower) var(--wi-ease-out);
+  transition-delay: var(--wi-reveal-delay, 0ms);
+}
+
+.wi-reveal--visible {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wi-reveal {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+/*
+ * Entrance of the content visible at load: add `wi-enter` and, to stagger a
+ * group, `--wi-enter-step: <index>` in its style.
+ */
+@keyframes wi-enter {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(0.75rem);
+  }
+}
+
+.wi-enter {
+  animation: wi-enter var(--wi-duration-slower) var(--wi-ease-out) both;
+  animation-delay: calc(60ms + var(--wi-enter-step, 0) * 60ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wi-enter {
+    animation: none;
+  }
+}
+
+/*
+ * Navigation between pages (Nuxt `experimental.viewTransition`): the old page
+ * fades out, the new one fades in and settles. Nuxt skips the transition with
+ * prefers-reduced-motion.
+ */
+@keyframes wi-page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes wi-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+::view-transition-old(root) {
+  animation: wi-page-out var(--wi-duration-fast) var(--wi-ease-standard) both;
+}
+
+::view-transition-new(root) {
+  animation: wi-page-in var(--wi-duration-slow) var(--wi-ease-out) both;
+}
+
+/*
+ * Theme switch through the View Transitions API: the new theme is revealed
+ * by a circle growing from the button (see WColorModeButton).
+ */
+:root[data-wi-theme-transition]::view-transition-old(root),
+:root[data-wi-theme-transition]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root[data-wi-theme-transition]::view-transition-old(root) {
+  z-index: 1;
+}
+
+:root[data-wi-theme-transition]::view-transition-new(root) {
+  z-index: 2;
+}

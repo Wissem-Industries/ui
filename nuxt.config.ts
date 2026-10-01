@@ -3,6 +3,8 @@ import { fileURLToPath } from 'node:url'
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-19',
   modules: ['@nuxt/ui'],
+  // Fades between pages; skipped with prefers-reduced-motion.
+  experimental: { viewTransition: true },
   app: {
     head: {
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

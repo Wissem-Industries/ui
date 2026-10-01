@@ -1,0 +1,60 @@
+/* Background grid that fades out downwards. */
+.wi-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--ui-border) 35%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--ui-border) 30%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 3rem 3rem;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+/* Ambient halo: a small copy of an image, blurred and saturated. */
+.wi-ambient__halo {
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  width: 124%;
+  height: 124%;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  filter: blur(48px) saturate(1.6);
+  opacity: var(--wi-ambient-opacity, 0.3);
+  transition: opacity var(--wi-duration-slow) var(--wi-ease-out);
+}
+
+.dark .wi-ambient__halo {
+  opacity: var(--wi-ambient-opacity-dark, 0.5);
+}
+
+.wi-ambient__fallback {
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      60% 60% at 25% 20%,
+      color-mix(in oklab, var(--ui-primary) 55%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      55% 55% at 80% 85%,
+      color-mix(in oklab, var(--ui-primary) 35%, transparent),
+      transparent 70%
+    );
+  filter: blur(32px);
+  opacity: var(--wi-ambient-opacity, 0.3);
+}
+
+.dark .wi-ambient__fallback {
+  opacity: var(--wi-ambient-opacity-dark, 0.5);
+}

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const name = ref('')
-const message = ref('')
 const motionKey = ref(0)
 
 const surfaces = [
@@ -19,15 +17,7 @@ const radii = [
 
 const durations = ['instant', 'fast', 'base', 'slow', 'slower']
 const eases = ['standard', 'out', 'in-out', 'spring']
-const colors = [
-  'primary',
-  'secondary',
-  'success',
-  'info',
-  'warning',
-  'error',
-  'neutral',
-] as const
+const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral'] as const
 </script>
 
 <template>
@@ -40,9 +30,9 @@ const colors = [
         Foundations
       </h1>
       <p class="text-lg leading-8 text-muted">
-        Surfaces, radii, motion and shared components of Wissem UI. This page
-        is the reference used to review the layer in light and dark mode before
-        a release.
+        Surfaces, colors, radii and motion of Wissem UI. This page is the
+        reference used to review the layer in light and dark mode before a
+        release.
       </p>
     </header>
 
@@ -175,39 +165,6 @@ const colors = [
       </div>
     </ShowcaseSection>
 
-    <ShowcaseSection id="components" title="Components">
-      <div class="grid gap-6 lg:grid-cols-2">
-        <UCard>
-          <div class="space-y-4">
-            <div class="flex flex-wrap gap-2">
-              <UBadge label="Default" />
-              <UBadge label="Neutral" color="neutral" />
-              <UBadge label="Outline" color="neutral" variant="outline" />
-            </div>
-            <div class="flex flex-wrap items-center gap-2">
-              <UButton label="Primary action" />
-              <UButton label="Secondary action" variant="outline" />
-              <UButton label="Ghost action" color="neutral" variant="ghost" />
-            </div>
-            <div class="flex flex-wrap items-center gap-2">
-              <UButton icon="i-ri-arrow-right-line" trailing label="With icon" />
-              <UButton icon="i-ri-github-line" color="neutral" variant="outline" aria-label="GitHub" />
-            </div>
-          </div>
-        </UCard>
-
-        <UCard>
-          <div class="space-y-4">
-            <UFormField label="Example input">
-              <UInput v-model="name" class="w-full" placeholder="Type something..." />
-            </UFormField>
-            <UFormField label="Example message">
-              <UTextarea v-model="message" class="w-full" placeholder="Write a message..." />
-            </UFormField>
-          </div>
-        </UCard>
-      </div>
-    </ShowcaseSection>
   </UContainer>
 </template>
 

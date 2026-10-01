@@ -127,6 +127,56 @@ In light mode the primary color uses the 600 step so that violet text keeps a
 The playground (`bun run dev`) is the reference for these foundations in light
 and dark mode.
 
+## Liquid Glass
+
+Floating layers use a translucent material: it blurs and saturates what is
+behind it and catches light on its edge. Nuxt UI menus, popovers, tooltips,
+dialogs, slideovers, drawers and toasts get it from the Layer configuration,
+with no wrapper.
+
+| Level | Class | Use |
+| --- | --- | --- |
+| Regular | `wi-glass` | Bars and menus |
+| Clear | `wi-glass wi-glass--clear` | Small controls over an image |
+| Thick | `wi-glass wi-glass--thick` | Dialogs and panels holding forms |
+
+Rules:
+
+- Real glass only on floating layers and on one to three featured cards per
+  page. Never on repeated list items: blurring dozens of surfaces makes
+  scrolling janky on phones.
+- Surfaces become opaque with `prefers-reduced-transparency`,
+  `prefers-contrast: more`, `forced-colors` and when `backdrop-filter` is
+  missing.
+- The refraction of Apple's version needs an SVG displacement filter, which
+  only works in Chromium and costs a lot to render, so it is not reproduced.
+
+## Shared components
+
+| Component | Purpose |
+| --- | --- |
+| `WNavbar` | Floating glass pill at the top of the page. Links show their label from 640 px, and only their icon below, so the bar stays clear of the browser toolbars at the bottom of phones. A sliding indicator follows the active link. Keep about `pt-24` above the content on phones. |
+| `WColorModeButton` | Light/dark toggle. The new theme is revealed by a circle growing from the button (View Transitions API, instant without it or with reduced motion). |
+| `WLocaleSelect` | Language menu that closes on selection, outside click and Escape. Options can carry a `to` link so it works without JavaScript. |
+| `WAmbient` | Blurred, saturated copy of an image (or of the primary color) behind its content, as album art in Apple Music. Pass a small image. |
+| `WGlassCard` | Featured card: real glass over an ambient halo that follows the pointer. |
+| `WGridBackground` | Background grid that fades downwards. |
+| `wi-enter` | Class for the content visible at load: it fades in and settles. Set `--wi-enter-step` to stagger a group. Disabled with `prefers-reduced-motion`. |
+| `v-reveal` | Fades an element in when it scrolls into view; the value staggers siblings. Content visible at load is left alone and nothing is hidden without JavaScript. |
+
+```vue
+<WNavbar :items="items" label="Primary navigation">
+  <template #trailing>
+    <WLocaleSelect :locales="locales" :current="locale" label="Language" @select="setLocale" />
+    <WColorModeButton label="Toggle color mode" />
+  </template>
+</WNavbar>
+```
+
+Navigation between pages uses View Transitions (`experimental.viewTransition`
+is enabled by the Layer): the old page fades out and the new one fades in.
+Nuxt skips it with `prefers-reduced-motion`.
+
 ## Icons
 
 Interface icons use Remix (`i-ri-*`) and flags use Circle Flags
@@ -141,12 +191,12 @@ Create an archive from this repository:
 bun pm pack
 ```
 
-The current package creates `wissem-industries-ui-0.6.0.tgz` in the repository
+The current package creates `wissem-industries-ui-0.7.0.tgz` in the repository
 root. Install that archive from another Nuxt project (adjust the path if the
 repositories are not siblings):
 
 ```bash
-bun add --dev ../Wissem-UI/wissem-industries-ui-0.6.0.tgz
+bun add --dev ../Wissem-UI/wissem-industries-ui-0.7.0.tgz
 ```
 
 Use the same `extends: ['@wissem-industries/ui']` and `UApp` configuration shown above.

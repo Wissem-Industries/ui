@@ -1,3 +1,9 @@
+// Floating layers use the Liquid Glass material (see glass.css) and a short
+// spring entrance. Content stays on the default Nuxt UI structure.
+const glassPanel = 'wi-glass rounded-xl'
+const glassEnter =
+  'data-[state=open]:animate-[wi-glass-in_260ms_var(--wi-ease-spring)] data-[state=closed]:animate-[wi-glass-out_120ms_var(--wi-ease-standard)]'
+
 export default defineAppConfig({
   ui: {
     colors: {
@@ -71,22 +77,7 @@ export default defineAppConfig({
         variant: 'soft',
       },
     },
-    select: {
-      defaultVariants: {
-        variant: 'soft',
-      },
-    },
     textarea: {
-      defaultVariants: {
-        variant: 'soft',
-      },
-    },
-    selectMenu: {
-      defaultVariants: {
-        variant: 'soft',
-      },
-    },
-    inputMenu: {
       defaultVariants: {
         variant: 'soft',
       },
@@ -114,6 +105,73 @@ export default defineAppConfig({
     pinInput: {
       defaultVariants: {
         variant: 'soft',
+      },
+    },
+    dropdownMenu: {
+      slots: {
+        content: `${glassPanel} ${glassEnter}`,
+        item: 'before:rounded-lg',
+      },
+    },
+    contextMenu: {
+      slots: {
+        content: `${glassPanel} ${glassEnter}`,
+        item: 'before:rounded-lg',
+      },
+    },
+    popover: {
+      slots: {
+        content: `${glassPanel} ${glassEnter}`,
+      },
+    },
+    select: {
+      slots: {
+        content: `${glassPanel} ${glassEnter}`,
+      },
+      defaultVariants: {
+        variant: 'soft',
+      },
+    },
+    selectMenu: {
+      slots: {
+        content: `${glassPanel} ${glassEnter}`,
+      },
+      defaultVariants: {
+        variant: 'soft',
+      },
+    },
+    inputMenu: {
+      slots: {
+        content: `${glassPanel} ${glassEnter}`,
+      },
+      defaultVariants: {
+        variant: 'soft',
+      },
+    },
+    tooltip: {
+      slots: {
+        content:
+          'wi-glass wi-glass--clear rounded-lg data-[state=delayed-open]:animate-[wi-glass-in_220ms_var(--wi-ease-spring)] data-[state=closed]:animate-[wi-glass-out_100ms_var(--wi-ease-standard)]',
+      },
+    },
+    modal: {
+      slots: {
+        content: 'wi-glass wi-glass--thick',
+      },
+    },
+    slideover: {
+      slots: {
+        content: 'wi-glass wi-glass--thick',
+      },
+    },
+    drawer: {
+      slots: {
+        content: 'wi-glass wi-glass--thick',
+      },
+    },
+    toast: {
+      slots: {
+        root: 'wi-glass rounded-xl',
       },
     },
     card: {

@@ -1,39 +1,35 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
-const isDark = computed(() => colorMode.value === 'dark')
+const items = [
+  { label: 'Foundations', to: '/', icon: 'i-ri-palette-line' },
+  { label: 'Glass', to: '/glass', icon: 'i-ri-drop-line' },
+  { label: 'Components', to: '/components', icon: 'i-ri-layout-grid-line' },
+]
 
-function toggleColorMode() {
-  colorMode.preference = isDark.value ? 'light' : 'dark'
-}
+const locales = [
+  { code: 'en', label: 'English', icon: 'i-circle-flags-gb' },
+  { code: 'fr', label: 'Français', icon: 'i-circle-flags-fr' },
+]
+const locale = ref('en')
 </script>
 
 <template>
   <UApp>
-    <header class="border-b border-default">
-      <UContainer class="flex h-16 items-center justify-between gap-4">
-        <NuxtLink to="/" class="flex items-center gap-2 font-semibold text-highlighted">
-          <img src="/favicon.ico" alt="" width="20" height="20">
-          Wissem UI
-        </NuxtLink>
-        <div class="flex items-center gap-1">
-          <UButton
-            to="/"
-            label="Foundations"
-            color="neutral"
-            variant="ghost"
-            size="sm"
-          />
-          <UButton
-            :icon="isDark ? 'i-ri-sun-line' : 'i-ri-moon-line'"
-            :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-            color="neutral"
-            variant="ghost"
-            size="sm"
-            @click="toggleColorMode"
-          />
-        </div>
-      </UContainer>
-    </header>
-    <NuxtPage />
+    <WNavbar :items="items" label="Primary navigation">
+      <template #trailing>
+        <WLocaleSelect
+          :locales="locales"
+          :current="locale"
+          label="Language"
+          @select="locale = $event"
+        />
+        <WColorModeButton label="Toggle color mode" />
+      </template>
+    </WNavbar>
+    <main class="relative overflow-hidden pb-12 pt-24 sm:pt-20">
+      <WGridBackground />
+      <div class="relative">
+        <NuxtPage />
+      </div>
+    </main>
   </UApp>
 </template>

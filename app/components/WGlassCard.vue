@@ -27,7 +27,7 @@ function updateHalo(event: PointerEvent) {
     :class="{ 'wi-glass-card--halo': halo }"
     @pointermove="updateHalo"
   >
-    <UCard class="wi-glass-card__surface h-full" :ui="{ body: bodyClass }">
+    <UCard class="wi-glass h-full rounded-2xl" :ui="{ body: bodyClass }">
       <slot />
     </UCard>
   </div>

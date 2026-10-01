@@ -1,0 +1,202 @@
+/*
+ * Liquid Glass material.
+ *
+ * Reserved for floating layers (navigation bars, menus, popovers, dialogs,
+ * toasts, tooltips) and for the few featured cards that sit above an
+ * ambient halo. Never put it on repeated list items: blurring dozens of
+ * surfaces is the first cause of janky scrolling on phones.
+ *
+ * Levels
+ *   wi-glass                 regular: bars and menus
+ *   wi-glass wi-glass--clear small controls over an image
+ *   wi-glass wi-glass--thick dialogs and panels holding forms
+ */
+
+:root,
+.light {
+  --wi-glass-tint: var(--color-white);
+  --wi-glass-rim: rgb(255 255 255 / 0.85);
+  --wi-glass-rim-soft: rgb(255 255 255 / 0.3);
+  --wi-glass-edge: rgb(0 0 0 / 0.07);
+  --wi-glass-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 12px 32px rgb(0 0 0 / 0.1);
+  --wi-glass-o-regular: 70%;
+  --wi-glass-o-clear: 42%;
+  --wi-glass-o-thick: 88%;
+}
+
+.dark {
+  --wi-glass-tint: var(--ui-color-neutral-900);
+  --wi-glass-rim: rgb(255 255 255 / 0.28);
+  --wi-glass-rim-soft: rgb(255 255 255 / 0.06);
+  --wi-glass-edge: rgb(0 0 0 / 0.5);
+  --wi-glass-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px rgb(0 0 0 / 0.45);
+  --wi-glass-o-regular: 76%;
+  --wi-glass-o-clear: 50%;
+  --wi-glass-o-thick: 92%;
+}
+
+.wi-glass {
+  --wi-glass-opacity: var(--wi-glass-o-regular);
+  --wi-glass-blur: 22px;
+  --wi-glass-saturate: 180%;
+  isolation: isolate;
+  background: color-mix(in oklab, var(--wi-glass-tint) var(--wi-glass-opacity), transparent);
+  -webkit-backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate));
+  backdrop-filter: blur(var(--wi-glass-blur)) saturate(var(--wi-glass-saturate));
+  box-shadow:
+    0 0 0 1px var(--wi-glass-edge),
+    var(--wi-glass-shadow);
+}
+
+/*
+ * The rim is positioned against the surface. Floating components are already
+ * positioned (fixed or absolute); this only covers the others.
+ */
+.wi-glass:not(.fixed, .absolute, .sticky, .relative) {
+  position: relative;
+}
+
+/* Specular rim: a bright edge on the top-left that fades around the shape. */
+.wi-glass::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(
+    145deg,
+    var(--wi-glass-rim),
+    var(--wi-glass-rim-soft) 38%,
+    transparent 62%,
+    var(--wi-glass-rim-soft)
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+
+.wi-glass--clear {
+  --wi-glass-opacity: var(--wi-glass-o-clear);
+  --wi-glass-blur: 14px;
+  --wi-glass-saturate: 200%;
+}
+
+.wi-glass--thick {
+  --wi-glass-opacity: var(--wi-glass-o-thick);
+  --wi-glass-blur: 32px;
+  --wi-glass-saturate: 160%;
+}
+
+.wi-glass--pill {
+  border-radius: var(--wi-radius-pill);
+}
+
+/* Opaque fallbacks keep text readable and respect the visitor's settings. */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .wi-glass {
+    background: var(--ui-bg-elevated);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow:
+      0 0 0 1px var(--ui-border-accented),
+      var(--wi-glass-shadow);
+  }
+
+  .wi-glass::before {
+    display: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .wi-glass {
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+    border: 1px solid CanvasText;
+  }
+
+  .wi-glass::before {
+    display: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .wi-glass {
+    background: var(--ui-bg-elevated);
+  }
+}
+
+/* Entrance used by menus, popovers and tooltips. */
+@keyframes wi-glass-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes wi-glass-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+/* Featured card: real glass above an ambient halo. */
+.wi-glass-card {
+  --wi-glass-x: 50%;
+  --wi-glass-y: 50%;
+  position: relative;
+  isolation: isolate;
+}
+
+.wi-glass-card--halo::before {
+  position: absolute;
+  inset: -1rem;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background: radial-gradient(
+    9rem circle at calc(var(--wi-glass-x) + 1rem) calc(var(--wi-glass-y) + 1rem),
+    color-mix(in srgb, var(--ui-primary) 34%, transparent),
+    transparent 72%
+  );
+  filter: blur(1.25rem);
+  opacity: 0;
+  transition: opacity var(--wi-duration-base) var(--wi-ease-out);
+}
+
+.wi-glass-card--halo:hover::before {
+  opacity: 0.75;
+}
+
+/* Scrim behind dialogs, slideovers and drawers. */
+[data-slot="overlay"] {
+  background: color-mix(in oklab, var(--ui-color-neutral-950) 38%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  [data-slot="overlay"] {
+    background: color-mix(in oklab, var(--ui-color-neutral-950) 60%, transparent);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

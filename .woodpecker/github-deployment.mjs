@@ -6,9 +6,7 @@ const { existsSync, readFileSync, writeFileSync } = await import('node:fs')
 const deploymentFile = '/.woodpecker/github-deployment-id'
 
 if (!token || !owner || !repository) {
-  throw new Error(
-    'GitHub deployment credentials or repository metadata are missing.',
-  )
+  throw new Error('GitHub deployment credentials or repository metadata are missing.')
 }
 
 const request = async (path, body) => {
@@ -25,9 +23,7 @@ const request = async (path, body) => {
 
   if (!response.ok) {
     const detail = await response.text()
-    throw new Error(
-      `GitHub deployment API returned ${response.status}: ${detail}`,
-    )
+    throw new Error(`GitHub deployment API returned ${response.status}: ${detail}`)
   }
 
   return response.json()
@@ -53,10 +49,7 @@ if (process.argv[2] === 'start') {
     production_environment: process.env.DEPLOYMENT_PRODUCTION === 'true',
     transient_environment: false,
   })
-  writeFileSync(
-    `${process.env.CI_WORKSPACE}${deploymentFile}`,
-    String(deployment.id),
-  )
+  writeFileSync(`${process.env.CI_WORKSPACE}${deploymentFile}`, String(deployment.id))
   await request(`${deploymentPath}/${deployment.id}/statuses`, {
     state: 'in_progress',
     log_url: process.env.CI_PIPELINE_URL,
@@ -65,9 +58,7 @@ if (process.argv[2] === 'start') {
 } else if (process.argv[2] === 'release') {
   const tag = process.env.CI_COMMIT_TAG
   if (!tag || !/^v\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/.test(tag)) {
-    throw new Error(
-      'A semantic version tag is required to publish a GitHub release.',
-    )
+    throw new Error('A semantic version tag is required to publish a GitHub release.')
   }
   await request(`/repos/${owner}/${repository}/releases`, {
     tag_name: tag,
