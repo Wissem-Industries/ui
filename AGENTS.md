@@ -16,5 +16,5 @@ Wissem UI est le système de design partagé et le Nuxt Layer des produits compa
 - Installer avec `bun install --frozen-lockfile`. `bun run check` exécute lint, typecheck, build du playground et vérification du paquet.
 - Vérifier la compatibilité et le lockfile de chaque consommateur avant de modifier une API du Layer ou de monter la version publiée.
 - Woodpecker publie le paquet npm `@wissem-industries/ui` dans GitHub Packages sur les tags versionnés. Garder son secret d’écriture uniquement dans la CI et le token de lecture dans la configuration utilisateur des consommateurs.
-- Respecter les conventions communes de [`../Wissem's Industries/AGENTS.md`](../Wissem's%20Industries/AGENTS.md), notamment les images Alpine/Bun et l’encodage UTF-8 BOM pour les scripts PowerShell.
+- Respecter les conventions communes de Wissem's Industries, notamment les images Alpine/Bun et l’encodage UTF-8 BOM pour les scripts PowerShell.
 - Mettre à jour ce fichier automatiquement quand Wissem formule une règle durable de design system; reporter les règles transverses au dépôt central.
