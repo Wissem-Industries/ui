@@ -158,6 +158,14 @@
   }
 }
 
+/* Menus and popovers open without animation when motion is reduced. */
+@media (prefers-reduced-motion: reduce) {
+  [data-state][class*="wi-glass-in"],
+  [data-state][class*="wi-glass-out"] {
+    animation: none;
+  }
+}
+
 /* Featured card: real glass above an ambient halo. */
 .wi-glass-card {
   --wi-glass-x: 50%;
