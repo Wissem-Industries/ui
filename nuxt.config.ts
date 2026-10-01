@@ -10,6 +10,14 @@ export default defineNuxtConfig({
   },
   css: [fileURLToPath(new URL('./app/assets/css/main.css', import.meta.url))],
   fonts: {
+    providers: {
+      adobe: false,
+      bunny: false,
+      fontshare: false,
+      fontsource: false,
+      google: false,
+      googleicons: false,
+    },
     families: [
       { name: 'Geist Variable', provider: 'none' },
       { name: 'Geist Mono Variable', provider: 'none' },

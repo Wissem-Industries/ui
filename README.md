@@ -117,12 +117,12 @@ Create an archive from this repository:
 bun pm pack
 ```
 
-The current package creates `wissem-industries-ui-0.5.4.tgz` in the repository
+The current package creates `wissem-industries-ui-0.5.5.tgz` in the repository
 root. Install that archive from another Nuxt project (adjust the path if the
 repositories are not siblings):
 
 ```bash
-bun add --dev ../Wissem-UI/wissem-industries-ui-0.5.4.tgz
+bun add --dev ../Wissem-UI/wissem-industries-ui-0.5.5.tgz
 ```
 
 Use the same `extends: ['@wissem-industries/ui']` and `UApp` configuration shown above.
