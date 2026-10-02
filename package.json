@@ -2,7 +2,7 @@
   "name": "@wissem-industries/ui",
   "description": "Shared design system for the wissem.pro applications, published as a Nuxt layer.",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": {
     "name": "Wissem's Industries",
