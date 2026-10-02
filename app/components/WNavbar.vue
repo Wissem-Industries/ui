@@ -38,6 +38,9 @@ function placeIndicator() {
   element.style.setProperty('--wi-nav-w', active ? `${active.offsetWidth}px` : '0px')
   element.style.setProperty('--wi-nav-x', active ? `${active.offsetLeft}px` : '0px')
   element.dataset.empty = active ? 'false' : 'true'
+  if (active && element.scrollWidth > element.clientWidth) {
+    element.scrollTo({ left: active.offsetLeft - (element.clientWidth - active.offsetWidth) / 2 })
+  }
 }
 
 let observer: ResizeObserver | undefined
@@ -74,15 +77,19 @@ watch(
   >
     <nav
       :aria-label="label"
-      class="wi-navbar wi-glass wi-glass--pill pointer-events-auto flex max-w-full items-center gap-0.5 p-1"
+      class="wi-navbar wi-glass wi-glass--pill pointer-events-auto flex min-w-0 max-w-full items-center gap-0.5 p-1"
     >
-      <ul ref="list" class="wi-navbar__list relative flex items-center gap-0.5" :data-ready="ready">
+      <ul
+        ref="list"
+        class="wi-navbar__list relative flex min-w-0 items-center gap-0.5 overflow-x-auto"
+        :data-ready="ready"
+      >
         <li class="wi-navbar__indicator" role="presentation" aria-hidden="true" />
         <li v-for="item in items" :key="item.to">
           <NuxtLink
             :to="item.to"
             :aria-current="isActive(item) ? 'page' : undefined"
-            class="wi-navbar__link relative flex size-11 items-center justify-center rounded-full text-sm font-medium text-toned outline-none transition-[color,scale] duration-(--wi-duration-base) ease-wi-spring hover:text-highlighted focus-visible:outline-2 focus-visible:outline-primary active:scale-95 aria-[current=page]:text-primary sm:h-9 sm:w-auto sm:min-w-20 sm:px-4"
+            class="wi-navbar__link relative flex size-11 items-center justify-center rounded-full text-sm font-medium text-toned outline-none transition-[color,scale] duration-(--wi-duration-base) ease-wi-spring hover:text-highlighted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary active:scale-95 aria-[current=page]:text-primary sm:h-9 sm:w-auto sm:min-w-20 sm:px-4"
           >
             <UIcon
               v-if="item.icon"
@@ -108,6 +115,15 @@ watch(
 </template>
 
 <style scoped>
+/* Last resort when the entries do not fit: the list scrolls instead of overflowing the page. */
+.wi-navbar__list {
+  scrollbar-width: none;
+}
+
+.wi-navbar__list::-webkit-scrollbar {
+  display: none;
+}
+
 .wi-navbar__indicator {
   position: absolute;
   inset-block: 0;

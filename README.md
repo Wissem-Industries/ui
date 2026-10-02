@@ -109,6 +109,26 @@ The configuration priority is:
 Nuxt UI defaults < @wissem-industries/ui defaults < application overrides
 ```
 
+### 5. Shared theme and language
+
+The Layer stores the visitor's theme in the `wsm_theme` cookie. Products that
+install `@nuxtjs/i18n` also inherit its language cookie, `wsm_locale`: they
+only declare their own locales and strategy. A product without the stored
+language keeps its default one.
+
+Both cookies are written for the domain given by `WSM_COOKIE_DOMAIN` at build
+time. Production images set it so that a choice made on one site applies to the
+others:
+
+```dockerfile
+ENV WSM_COOKIE_DOMAIN=.wissem.pro
+RUN bun run build
+```
+
+Leave it empty in development and end-to-end tests: browsers refuse a
+`.wissem.pro` cookie on `localhost`, and the cookies then stay on the current
+host.
+
 ## Design tokens
 
 The Layer defines its tokens in `app/assets/css/tokens.css`. Products use them
@@ -155,7 +175,7 @@ Rules:
 
 | Component | Purpose |
 | --- | --- |
-| `WNavbar` | Floating glass pill at the top of the page. Links show their label from 640 px, and only their icon below, so the bar stays clear of the browser toolbars at the bottom of phones. A sliding indicator follows the active link. Keep about `pt-24` above the content on phones. |
+| `WNavbar` | Floating glass pill at the top of the page. Links show their label from 640 px, and only their icon below, so the bar stays clear of the browser toolbars at the bottom of phones. A sliding indicator follows the active link. Keep about `pt-24` above the content on phones, and only icon buttons in `#trailing` below 640 px: when the entries still do not fit, the links scroll horizontally. |
 | `WColorModeButton` | Light/dark toggle. The new theme is revealed by a circle growing from the button (View Transitions API, instant without it or with reduced motion). |
 | `WLocaleSelect` | Language menu that closes on selection, outside click and Escape. Options can carry a `to` link so it works without JavaScript. |
 | `WAmbient` | Blurred, saturated copy of an image (or of the primary color) behind its content, as album art in Apple Music. Pass a small image. |
@@ -191,12 +211,12 @@ Create an archive from this repository:
 bun pm pack
 ```
 
-The current package creates `wissem-industries-ui-0.7.0.tgz` in the repository
+The current package creates `wissem-industries-ui-0.9.0.tgz` in the repository
 root. Install that archive from another Nuxt project (adjust the path if the
 repositories are not siblings):
 
 ```bash
-bun add --dev ../Wissem-UI/wissem-industries-ui-0.7.0.tgz
+bun add --dev ../Wissem-UI/wissem-industries-ui-0.9.0.tgz
 ```
 
 Use the same `extends: ['@wissem-industries/ui']` and `UApp` configuration shown above.
