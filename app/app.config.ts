@@ -1,4 +1,4 @@
-// Floating layers use the Liquid Glass material (see glass.css) and a short
+// Floating layers use the glass material (see glass.css) and a short
 // spring entrance. Content stays on the default Nuxt UI structure.
 const glassPanel = 'wi-glass rounded-xl'
 const glassEnter =

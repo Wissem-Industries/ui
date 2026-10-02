@@ -1,8 +1,8 @@
 {
   "name": "@wissem-industries/ui",
-  "description": "Shared Nuxt UI design system layer for Wissem's Industries applications.",
+  "description": "Shared design system for the wissem.pro applications, published as a Nuxt layer.",
   "type": "module",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "license": "MIT",
   "author": {
     "name": "Wissem's Industries",
@@ -17,12 +17,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Wissem-Industries/Wissem-UI.git"
+    "url": "git+https://github.com/Wissem-Industries/ui.git"
   },
   "bugs": {
-    "url": "https://github.com/Wissem-Industries/Wissem-UI/issues"
+    "url": "https://github.com/Wissem-Industries/ui/issues"
   },
-  "homepage": "https://github.com/Wissem-Industries/Wissem-UI#readme",
+  "homepage": "https://github.com/Wissem-Industries/ui#readme",
   "main": "./nuxt.config.ts",
   "files": [
     "app",
@@ -48,6 +48,7 @@
     "lint:fix": "biome check --write .",
     "typecheck": "nuxt typecheck .playground",
     "pack:check": "bun pm pack --dry-run",
+    "release": "bun scripts/release.mjs",
     "check": "bun run lint && bun run typecheck && bun run build && bun run pack:check",
     "prepublishOnly": "bun run check"
   },

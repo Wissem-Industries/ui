@@ -1,5 +1,5 @@
 /*
- * Liquid Glass material.
+ * Glass material.
  *
  * Reserved for floating layers (navigation bars, menus, popovers, dialogs,
  * toasts, tooltips) and for the few featured cards that sit above an
@@ -52,7 +52,7 @@
   --wi-glass-blur: 22px;
   --wi-glass-saturate: 180%;
   isolation: isolate;
-  /* A light sheen over the tint: translucent glass reads as brighter than what is behind it. */
+  /* Light sheen over the tint: glass reads brighter than what is behind it. */
   background:
     linear-gradient(135deg, var(--wi-glass-sheen-a), var(--wi-glass-sheen-b)),
     linear-gradient(
@@ -98,7 +98,7 @@
   -webkit-mask-composite: xor;
 }
 
-/* Diagonal glare, as light catching the surface. */
+/* Diagonal glare. */
 .wi-glass::after {
   position: absolute;
   inset: 0;

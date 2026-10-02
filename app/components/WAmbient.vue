@@ -1,9 +1,7 @@
 <script setup lang="ts">
 /**
- * Ambient background: the image is blurred and saturated behind the content,
- * so a glass surface laid on top has colors to refine, as with album art in
- * Apple Music. Pass a small copy of the image (a few hundred pixels): the
- * blur is static and cheap, there is no backdrop-filter here.
+ * Blurred, saturated copy of an image behind the content, for a glass surface
+ * laid on top. Pass a small image: the blur is static, without backdrop-filter.
  */
 withDefaults(
   defineProps<{
