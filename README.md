@@ -2,7 +2,7 @@
 
 Shared design system for the `wissem.pro` applications, published as a Nuxt layer.
 
-[![CI](https://ci.wissem.pro/api/badges/1/status.svg)](https://ci.wissem.pro/repos/1)
+[![CI](https://ci.wissem.pro/api/badges/11/status.svg)](https://ci.wissem.pro/repos/11)
 [![Release](https://img.shields.io/github/v/release/Wissem-Industries/ui?sort=semver)](https://github.com/Wissem-Industries/ui/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
