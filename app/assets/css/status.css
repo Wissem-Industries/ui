@@ -173,11 +173,9 @@
   --wi-spot-y: 50%;
   position: relative;
   display: grid;
-  margin-block: 0.5rem -1.75rem;
-  font-size: clamp(7.5rem, 31vw, 18rem);
-  font-weight: 700;
-  line-height: 0.8;
-  letter-spacing: -0.06em;
+  margin-block: 0.25rem 0;
+  font-size: clamp(8rem, 30vw, 15rem);
+  line-height: 1;
   user-select: none;
   animation:
     wi-status-spot-x 9s var(--wi-ease-in-out) infinite alternate,
@@ -189,68 +187,65 @@
 }
 
 .wi-status__glyphs {
-  display: flex;
-  grid-area: 1 / 1;
-  justify-content: center;
-}
-
-.wi-status__digit {
   position: relative;
-  display: inline-block;
-  padding-inline: 0.01em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  display: grid;
+  grid-area: 1 / 1;
+  place-items: center;
 }
 
-.wi-status__glyphs--base .wi-status__digit {
+.wi-status__icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  background-color: transparent;
+}
+
+.wi-status__glyphs--base .wi-status__icon {
   background-image: linear-gradient(
     to bottom,
     color-mix(in oklab, var(--ui-text-highlighted) 92%, transparent) 8%,
-    color-mix(in oklab, var(--wi-accent) 38%, var(--ui-text-muted)) 60%,
-    transparent 100%
+    color-mix(in oklab, var(--wi-accent) 45%, var(--ui-text-muted)) 62%,
+    color-mix(in oklab, var(--wi-accent) 30%, transparent) 100%
   );
 }
 
 .wi-status__glyphs--lit {
   pointer-events: none;
   mask-image: radial-gradient(
-    circle 0.95em at var(--wi-spot-x) var(--wi-spot-y),
+    circle 0.7em at var(--wi-spot-x) var(--wi-spot-y),
     black 0%,
     transparent 100%
   );
   -webkit-mask-image: radial-gradient(
-    circle 0.95em at var(--wi-spot-x) var(--wi-spot-y),
+    circle 0.7em at var(--wi-spot-x) var(--wi-spot-y),
     black 0%,
     transparent 100%
   );
 }
 
-.wi-status__glyphs--lit .wi-status__digit {
+.wi-status__glyphs--lit .wi-status__icon {
   background-image: linear-gradient(
     to bottom,
     var(--wi-accent-lit) 0%,
-    color-mix(in oklab, var(--wi-accent) 80%, transparent) 62%,
-    transparent 100%
+    color-mix(in oklab, var(--wi-accent) 85%, transparent) 100%
   );
 }
 
-/* Moon on the zero of the 404. */
+/* Moon around the compass of the 404. */
 .wi-status__moon {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  offset-path: ellipse(52% 47% at 50% 52%);
+  offset-path: circle(58% at 50% 50%);
   offset-rotate: 0deg;
   animation: wi-status-orbit 7s linear infinite;
-  width: 0.05em;
-  height: 0.05em;
+  width: 0.045em;
+  height: 0.045em;
   border-radius: 50%;
   background: var(--wi-accent-lit);
   box-shadow:
     0 0 0.1em var(--wi-accent-lit),
     0 0 0.3em var(--wi-accent);
-  -webkit-text-fill-color: initial;
 }
 
 /* Scan line over the code of access errors. */
@@ -275,8 +270,8 @@
   animation: wi-status-glitch 5.5s steps(1, end) infinite;
 }
 
-/* Hazard stripes, moving, in the digits of a maintenance. */
-.wi-status[data-kind="maintenance"] .wi-status__glyphs--base .wi-status__digit {
+/* Hazard stripes, moving, in the icon of a maintenance. */
+.wi-status[data-kind="maintenance"] .wi-status__glyphs--base .wi-status__icon {
   background-image: repeating-linear-gradient(
     135deg,
     color-mix(in oklab, var(--wi-accent) 70%, transparent) 0 0.09em,
@@ -286,8 +281,6 @@
   animation:
     wi-enter var(--wi-duration-slower) var(--wi-ease-out) both,
     wi-status-stripes 2.4s linear infinite;
-  mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
 }
 
 /* Cooldown pulse. */
@@ -450,13 +443,9 @@
   .wi-status__moon,
   .wi-status__scan,
   .wi-status[data-kind] .wi-status__glyphs,
-  .wi-status[data-kind] .wi-status__digit,
+  .wi-status[data-kind] .wi-status__icon,
   .wi-status__ring {
     animation: none;
-  }
-
-  .wi-status__star {
-    opacity: 0.45;
   }
 
   .wi-status__ring:not(:first-child) {
@@ -465,6 +454,10 @@
 
   .wi-status__ring {
     opacity: 0.25;
+  }
+
+  .wi-status__star {
+    opacity: 0.45;
   }
 }
 
@@ -483,8 +476,7 @@
     display: none;
   }
 
-  .wi-status__glyphs--base .wi-status__digit {
-    -webkit-text-fill-color: CanvasText;
-    background: none;
+  .wi-status__glyphs--base .wi-status__icon {
+    background: CanvasText;
   }
 }
