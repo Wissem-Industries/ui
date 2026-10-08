@@ -7,6 +7,7 @@ Wissem UI est le système de design partagé et le Nuxt Layer des produits compa
 - Le paquet étend Nuxt avec le thème et les valeurs par défaut de Nuxt UI, Tailwind et les icônes. Les applications consommatrices déclarent `@wissem-industries/ui` dans `extends`.
 - Ne pas créer de wrappers de composants sans besoin démontré; les consommateurs gardent leurs propres pages, comportements et règles métier.
 - Les applications compatibles utilisent `UApp` à la racine. Le favicon fourni est remplaçable par `public/favicon.ico` dans un produit.
+- Le Layer fournit `app/error.vue` (`WStatusPage` : 404, 403, 500, maintenance, hors ligne, bientôt) : une application n'écrit pas sa propre page d'erreur sans besoin, elle peut réutiliser `WStatusPage` avec ses textes. Textes en français et en anglais dans `app/utils/wi-status.ts`.
 - Geist et Geist Mono sont locaux au paquet; ne pas réintroduire une dépendance aux Google Fonts pour le rendu normal.
 - Ce paquet n’est pas l’identité métier de produits nécessitant un système sectoriel tel que DSFR; leurs besoins restent dans leurs dépôts.
 
