@@ -34,21 +34,75 @@ interface WStatusKindMeta {
   /** Code displayed when none is given. Kinds without a code show the icon instead. */
   code?: number
   icon: string
+  /** Large icon of the screen. */
+  hero: string
   /** Surface color of the page, one of the Nuxt UI semantic colors. */
   accent: 'primary' | 'warning' | 'error' | 'info' | 'neutral'
   retry: boolean
 }
 
 export const wiStatusKinds: Record<WStatusKind, WStatusKindMeta> = {
-  'not-found': { code: 404, icon: 'i-ri-compass-3-line', accent: 'primary', retry: false },
-  'bad-request': { code: 400, icon: 'i-ri-error-warning-line', accent: 'warning', retry: false },
-  unauthorized: { code: 401, icon: 'i-ri-key-2-line', accent: 'warning', retry: false },
-  forbidden: { code: 403, icon: 'i-ri-forbid-2-line', accent: 'error', retry: false },
-  'too-many-requests': { code: 429, icon: 'i-ri-timer-line', accent: 'warning', retry: true },
-  'server-error': { code: 500, icon: 'i-ri-bug-line', accent: 'error', retry: true },
-  maintenance: { code: 503, icon: 'i-ri-tools-line', accent: 'info', retry: true },
-  offline: { icon: 'i-ri-wifi-off-line', accent: 'neutral', retry: true },
-  'coming-soon': { icon: 'i-ri-rocket-2-line', accent: 'primary', retry: false },
+  'not-found': {
+    code: 404,
+    icon: 'i-ri-compass-3-line',
+    hero: 'i-ri-compass-3-line',
+    accent: 'primary',
+    retry: false,
+  },
+  'bad-request': {
+    code: 400,
+    icon: 'i-ri-error-warning-line',
+    hero: 'i-ri-error-warning-line',
+    accent: 'warning',
+    retry: false,
+  },
+  unauthorized: {
+    code: 401,
+    icon: 'i-ri-key-2-line',
+    hero: 'i-ri-key-2-line',
+    accent: 'warning',
+    retry: false,
+  },
+  forbidden: {
+    code: 403,
+    icon: 'i-ri-forbid-2-line',
+    hero: 'i-ri-forbid-2-line',
+    accent: 'error',
+    retry: false,
+  },
+  'too-many-requests': {
+    code: 429,
+    icon: 'i-ri-timer-line',
+    hero: 'i-ri-timer-line',
+    accent: 'warning',
+    retry: true,
+  },
+  'server-error': {
+    code: 500,
+    icon: 'i-ri-bug-line',
+    hero: 'i-ri-bug-line',
+    accent: 'error',
+    retry: true,
+  },
+  maintenance: {
+    code: 503,
+    icon: 'i-ri-tools-line',
+    hero: 'i-ri-tools-line',
+    accent: 'info',
+    retry: true,
+  },
+  offline: {
+    icon: 'i-ri-wifi-off-line',
+    hero: 'i-ri-wifi-off-line',
+    accent: 'neutral',
+    retry: true,
+  },
+  'coming-soon': {
+    icon: 'i-ri-rocket-2-line',
+    hero: 'i-ri-rocket-2-line',
+    accent: 'primary',
+    retry: false,
+  },
 }
 
 const copy: Record<WStatusLocale, Record<WStatusKind, WStatusCopy>> = {

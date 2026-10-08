@@ -8,7 +8,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Added
 
-- `WStatusPage`: full-page status screens for 404, 400, 401, 403, 429, 500, 503, offline and coming soon, with a large code lit by the pointer, a perspective floor and an accent color per kind. Text in French and English, replaceable prop by prop.
+- `WStatusPage`: full-page status screens for 404, 400, 401, 403, 429, 500, 503, offline and coming soon, with a large icon lit by the pointer, the code in a badge, a perspective floor and an accent color per kind. Text in French and English, replaceable prop by prop.
 - `app/error.vue` in the layer: every application that extends it gets the 404 and error pages. An application's own `app/error.vue` still wins.
 - `useWiStatusLocale`, `wiStatusKind` and `wiStatusCopy` helpers.
 

@@ -9,7 +9,7 @@ import type { WStatusKind } from '../utils/wi-status'
 const props = withDefaults(
   defineProps<{
     kind?: WStatusKind
-    /** Code shown in large type. Defaults to the code of the kind; kinds without one show an icon. */
+    /** Code shown in the badge. Defaults to the code of the kind; kinds without one show the label. */
     code?: number | string
     title?: string
     description?: string
@@ -71,7 +71,6 @@ const strings = computed(() => wiStatusCopy(props.kind, activeLang.value))
 const ui = computed(() => wiStatusUi(activeLang.value))
 
 const codeText = computed(() => String(props.code ?? meta.value.code ?? ''))
-const glyphs = computed(() => Array.from(codeText.value))
 const eyebrow = computed(() =>
   codeText.value ? ui.value.code(codeText.value) : strings.value.eyebrow,
 )
@@ -218,38 +217,15 @@ onBeforeUnmount(() => cancelAnimationFrame(frame))
         />
       </div>
 
-      <div v-if="glyphs.length" class="wi-status__code" ref="codeBox" aria-hidden="true">
+      <div ref="codeBox" class="wi-status__code" aria-hidden="true">
         <span class="wi-status__glyphs wi-status__glyphs--base">
-          <span
-            v-for="(glyph, index) in glyphs"
-            :key="index"
-            class="wi-status__digit wi-enter"
-            :style="{ '--wi-enter-step': index + 1 }"
-          >
-            {{ glyph }}
-            <i v-if="kind === 'not-found' && glyph === '0'" class="wi-status__moon" />
-          </span>
+          <UIcon :name="meta.hero" class="wi-status__icon wi-enter" style="--wi-enter-step: 1" />
+          <i v-if="kind === 'not-found'" class="wi-status__moon" />
         </span>
         <span class="wi-status__glyphs wi-status__glyphs--lit">
-          <span
-            v-for="(glyph, index) in glyphs"
-            :key="index"
-            class="wi-status__digit wi-enter"
-            :style="{ '--wi-enter-step': index + 1 }"
-          >
-            {{ glyph }}
-          </span>
+          <UIcon :name="meta.hero" class="wi-status__icon wi-enter" style="--wi-enter-step: 1" />
         </span>
         <span class="wi-status__scan" />
-      </div>
-
-      <div v-else class="wi-status__medal wi-enter" style="--wi-enter-step: 1" aria-hidden="true">
-        <span class="wi-status__ring" />
-        <span class="wi-status__ring" style="--wi-ring-step: 1" />
-        <span class="wi-status__ring" style="--wi-ring-step: 2" />
-        <span class="wi-glass wi-glass--thick wi-status__disc">
-          <UIcon :name="meta.icon" class="size-12" />
-        </span>
       </div>
 
       <div class="wi-status__text">
