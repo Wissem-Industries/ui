@@ -80,9 +80,7 @@ const showHome = computed(() => props.home ?? !['maintenance', 'offline'].includ
 const showRetry = computed(() => props.retry ?? meta.value.retry)
 const wantsBack = computed(() => props.back ?? accessProblem.includes(props.kind))
 
-const buttonColor = computed(() =>
-  meta.value.accent === 'neutral' ? 'primary' : meta.value.accent,
-)
+const buttonColor = computed(() => meta.value.accent)
 const canGoBack = ref(false)
 const remaining = ref(props.retryAfter)
 const online = ref(false)
@@ -291,7 +289,7 @@ onBeforeUnmount(() => cancelAnimationFrame(frame))
               :disabled="remaining > 0"
               icon="i-ri-refresh-line"
               size="lg"
-              variant="solid"
+              :variant="meta.accent === 'neutral' ? 'subtle' : 'solid'"
               :color="buttonColor"
               @click="retry"
             />
@@ -301,7 +299,7 @@ onBeforeUnmount(() => cancelAnimationFrame(frame))
               :to="homeTo"
               icon="i-ri-home-4-line"
               size="lg"
-              :variant="showRetry ? 'subtle' : 'solid'"
+              :variant="showRetry || meta.accent === 'neutral' ? 'subtle' : 'solid'"
               :color="buttonColor"
               @click="emit('home', $event)"
             />
