@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-08
+
 ### Added
 
 - `WStatusPage`: full-page status screens for 404, 400, 401, 403, 429, 500, 503, offline and coming soon, with a large code lit by the pointer, a perspective floor and an accent color per kind. Text in French and English, replaceable prop by prop.
