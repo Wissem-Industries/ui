@@ -52,7 +52,19 @@ Both cookies are written for the domain set in `WSM_COOKIE_DOMAIN` at build time
 | `WAmbient` | Blurred copy of an image or of the primary color behind its content. |
 | `WGlassCard` | Featured card on a glass surface. |
 | `WGridBackground` | Background grid that fades downwards. |
+| `WStatusPage` | Full-page status screen: 404, 401, 403, 429, 500, 503, offline, coming soon. |
 | `wi-enter`, `v-reveal` | Entrance and scroll reveal animations, disabled with reduced motion. |
+
+### Error and status pages
+
+The layer ships an `app/error.vue`: a missing route, a thrown `createError` or a server error renders `WStatusPage` with the right kind, in French or English (language of `@nuxtjs/i18n` when installed, then the `wsm_locale` cookie, then the browser). An application that defines its own `app/error.vue` replaces it and can still use the component:
+
+```vue
+<WStatusPage kind="maintenance" :until="new Date('2026-10-09T14:30:00')" />
+<WStatusPage kind="coming-soon" as="section" :fullscreen="false" />
+```
+
+Kinds: `not-found`, `bad-request`, `unauthorized`, `forbidden`, `too-many-requests`, `server-error`, `maintenance`, `offline`, `coming-soon`. Props override the code, title, description, buttons and countdown (`retry-after`); the `home` and `retry` events replace the default actions. Motion stops with `prefers-reduced-motion`.
 
 ### Tokens and glass
 

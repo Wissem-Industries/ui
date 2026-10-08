@@ -3,6 +3,7 @@ const items = [
   { label: 'Foundations', to: '/', icon: 'i-ri-palette-line' },
   { label: 'Glass', to: '/glass', icon: 'i-ri-drop-line' },
   { label: 'Components', to: '/components', icon: 'i-ri-layout-grid-line' },
+  { label: 'Status', to: '/status', icon: 'i-ri-error-warning-line' },
 ]
 
 const locales = [
