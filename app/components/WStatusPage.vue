@@ -217,7 +217,7 @@ onBeforeUnmount(() => cancelAnimationFrame(frame))
         />
       </div>
 
-      <div ref="codeBox" class="wi-status__code" aria-hidden="true">
+      <div v-if="codeText" ref="codeBox" class="wi-status__code" aria-hidden="true">
         <span class="wi-status__glyphs wi-status__glyphs--base">
           <UIcon :name="meta.hero" class="wi-status__icon wi-enter" style="--wi-enter-step: 1" />
           <i v-if="kind === 'not-found'" class="wi-status__moon" />
@@ -226,6 +226,15 @@ onBeforeUnmount(() => cancelAnimationFrame(frame))
           <UIcon :name="meta.hero" class="wi-status__icon wi-enter" style="--wi-enter-step: 1" />
         </span>
         <span class="wi-status__scan" />
+      </div>
+
+      <div v-else class="wi-status__medal wi-enter" style="--wi-enter-step: 1" aria-hidden="true">
+        <span class="wi-status__ring" />
+        <span class="wi-status__ring" style="--wi-ring-step: 1" />
+        <span class="wi-status__ring" style="--wi-ring-step: 2" />
+        <span class="wi-glass wi-glass--thick wi-status__disc">
+          <UIcon :name="meta.icon" class="size-12" />
+        </span>
       </div>
 
       <div class="wi-status__text">

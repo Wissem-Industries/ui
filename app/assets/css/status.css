@@ -288,6 +288,34 @@
   animation: wi-status-pulse 1.8s var(--wi-ease-in-out) infinite;
 }
 
+/* Medal for kinds without a code */
+
+.wi-status__medal {
+  position: relative;
+  display: grid;
+  width: 9rem;
+  height: 9rem;
+  place-items: center;
+}
+
+.wi-status__disc {
+  display: grid;
+  width: 7rem;
+  height: 7rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--wi-accent-lit);
+}
+
+.wi-status__ring {
+  position: absolute;
+  inset: 1rem;
+  border-radius: 50%;
+  border: 1px solid var(--wi-accent);
+  opacity: 0;
+  animation: wi-status-ring 3.6s var(--wi-ease-out) calc(var(--wi-ring-step, 0) * 1.2s) infinite;
+}
+
 /* Keyframes */
 
 @keyframes wi-status-glow {
@@ -395,6 +423,18 @@
   }
 }
 
+@keyframes wi-status-ring {
+  from {
+    opacity: 0.55;
+    scale: 0.75;
+  }
+
+  to {
+    opacity: 0;
+    scale: 2;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wi-status__glow,
   .wi-status__floor::before,
@@ -403,8 +443,17 @@
   .wi-status__moon,
   .wi-status__scan,
   .wi-status[data-kind] .wi-status__glyphs,
-  .wi-status[data-kind] .wi-status__icon {
+  .wi-status[data-kind] .wi-status__icon,
+  .wi-status__ring {
     animation: none;
+  }
+
+  .wi-status__ring:not(:first-child) {
+    display: none;
+  }
+
+  .wi-status__ring {
+    opacity: 0.25;
   }
 
   .wi-status__star {
