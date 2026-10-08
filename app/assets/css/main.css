@@ -6,6 +6,7 @@
 @import "./glass.css";
 @import "./motion.css";
 @import "./decor.css";
+@import "./status.css";
 
 @theme {
   --font-sans: "Geist Variable", "Geist", sans-serif;

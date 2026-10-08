@@ -1,0 +1,490 @@
+/*
+ * Status screens (WStatusPage): 404, access and server errors, maintenance,
+ * offline, coming soon. The accent follows the kind (data-accent).
+ *
+ * Layers, back to front: glow, perspective floor, stars, content. The large
+ * code is drawn twice: a faded base, and a lit copy revealed by a mask that
+ * follows the pointer (or drifts by itself without one).
+ */
+
+@property --wi-spot-x {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --wi-spot-y {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+.wi-status {
+  --wi-accent: var(--ui-primary);
+  --wi-accent-lit: var(--wi-accent);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 5rem 1.5rem 3rem;
+  background: var(--ui-bg);
+}
+
+.dark .wi-status {
+  --wi-accent-lit: color-mix(in oklab, var(--wi-accent) 70%, white);
+}
+
+.wi-status--full {
+  min-height: 100dvh;
+}
+
+.wi-status--inline {
+  min-height: 36rem;
+  border-radius: var(--wi-radius-panel);
+  box-shadow: inset 0 0 0 1px var(--ui-border);
+}
+
+.wi-status[data-accent="warning"] {
+  --wi-accent: var(--ui-warning);
+}
+
+.wi-status[data-accent="error"] {
+  --wi-accent: var(--ui-error);
+}
+
+.wi-status[data-accent="info"] {
+  --wi-accent: var(--ui-info);
+}
+
+.wi-status[data-accent="neutral"] {
+  --wi-accent: var(--ui-text-muted);
+}
+
+/* Backdrop */
+
+.wi-status__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wi-status__glow {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  width: min(80vw, 56rem);
+  aspect-ratio: 1;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--wi-accent) 34%, transparent),
+    transparent
+  );
+  filter: blur(24px);
+  opacity: 0.55;
+  animation: wi-status-glow 14s var(--wi-ease-in-out) infinite alternate;
+}
+
+.dark .wi-status__glow {
+  opacity: 0.85;
+}
+
+/* Floor in perspective, scrolling towards the viewer. */
+.wi-status__floor {
+  position: absolute;
+  inset: auto 0 0;
+  height: 58%;
+  perspective: 26rem;
+  perspective-origin: 50% 0;
+  mask-image: linear-gradient(to top, black 15%, transparent 92%);
+  -webkit-mask-image: linear-gradient(to top, black 15%, transparent 92%);
+}
+
+.wi-status__floor::before {
+  position: absolute;
+  inset: 0 -60% -40%;
+  content: "";
+  transform-origin: 50% 0;
+  transform: rotateX(72deg);
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--wi-accent) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--wi-accent) 55%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 3.5rem 3.5rem;
+  opacity: 0.4;
+  animation: wi-status-floor 5s linear infinite;
+}
+
+.dark .wi-status__floor::before {
+  opacity: 0.55;
+}
+
+.wi-status__star {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--wi-accent-lit);
+  opacity: 0.1;
+  animation: wi-status-twinkle 4.2s ease-in-out var(--delay) infinite;
+}
+
+.dark .wi-status__star {
+  box-shadow: 0 0 6px var(--wi-accent);
+}
+
+/* Content */
+
+.wi-status__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  max-width: 36rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.wi-status__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Large code */
+
+.wi-status__code {
+  --wi-spot-x: 50%;
+  --wi-spot-y: 50%;
+  position: relative;
+  display: grid;
+  margin-block: 0.5rem -1.75rem;
+  font-size: clamp(7.5rem, 31vw, 18rem);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  user-select: none;
+  animation:
+    wi-status-spot-x 9s var(--wi-ease-in-out) infinite alternate,
+    wi-status-spot-y 13s var(--wi-ease-in-out) infinite alternate;
+}
+
+.wi-status__code[data-active="true"] {
+  animation: none;
+}
+
+.wi-status__glyphs {
+  display: flex;
+  grid-area: 1 / 1;
+  justify-content: center;
+}
+
+.wi-status__digit {
+  position: relative;
+  display: inline-block;
+  padding-inline: 0.01em;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.wi-status__glyphs--base .wi-status__digit {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--ui-text-highlighted) 92%, transparent) 8%,
+    color-mix(in oklab, var(--wi-accent) 38%, var(--ui-text-muted)) 60%,
+    transparent 100%
+  );
+}
+
+.wi-status__glyphs--lit {
+  pointer-events: none;
+  mask-image: radial-gradient(
+    circle 0.95em at var(--wi-spot-x) var(--wi-spot-y),
+    black 0%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle 0.95em at var(--wi-spot-x) var(--wi-spot-y),
+    black 0%,
+    transparent 100%
+  );
+}
+
+.wi-status__glyphs--lit .wi-status__digit {
+  background-image: linear-gradient(
+    to bottom,
+    var(--wi-accent-lit) 0%,
+    color-mix(in oklab, var(--wi-accent) 80%, transparent) 62%,
+    transparent 100%
+  );
+}
+
+/* Moon on the zero of the 404. */
+.wi-status__moon {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  offset-path: ellipse(52% 47% at 50% 52%);
+  offset-rotate: 0deg;
+  animation: wi-status-orbit 7s linear infinite;
+  width: 0.05em;
+  height: 0.05em;
+  border-radius: 50%;
+  background: var(--wi-accent-lit);
+  box-shadow:
+    0 0 0.1em var(--wi-accent-lit),
+    0 0 0.3em var(--wi-accent);
+  -webkit-text-fill-color: initial;
+}
+
+/* Scan line over the code of access errors. */
+.wi-status__scan {
+  position: absolute;
+  inset-inline: 4%;
+  top: 0;
+  height: 2px;
+  display: none;
+  background: linear-gradient(90deg, transparent, var(--wi-accent-lit), transparent);
+  box-shadow: 0 0 1.2rem 2px var(--wi-accent);
+  animation: wi-status-scan 3.6s var(--wi-ease-in-out) infinite;
+}
+
+.wi-status[data-kind="forbidden"] .wi-status__scan,
+.wi-status[data-kind="unauthorized"] .wi-status__scan {
+  display: block;
+}
+
+/* Bursts of glitch on server errors. */
+.wi-status[data-kind="server-error"] .wi-status__glyphs--lit {
+  animation: wi-status-glitch 5.5s steps(1, end) infinite;
+}
+
+/* Hazard stripes, moving, in the digits of a maintenance. */
+.wi-status[data-kind="maintenance"] .wi-status__glyphs--base .wi-status__digit {
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--wi-accent) 70%, transparent) 0 0.09em,
+    transparent 0.09em 0.18em
+  );
+  background-size: 0.2546em 0.2546em;
+  animation:
+    wi-enter var(--wi-duration-slower) var(--wi-ease-out) both,
+    wi-status-stripes 2.4s linear infinite;
+  mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
+}
+
+/* Cooldown pulse. */
+.wi-status[data-kind="too-many-requests"] .wi-status__glyphs--base {
+  animation: wi-status-pulse 1.8s var(--wi-ease-in-out) infinite;
+}
+
+/* Medal for kinds without a code */
+
+.wi-status__medal {
+  position: relative;
+  display: grid;
+  width: 9rem;
+  height: 9rem;
+  place-items: center;
+}
+
+.wi-status__disc {
+  display: grid;
+  width: 7rem;
+  height: 7rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--wi-accent-lit);
+}
+
+.wi-status__ring {
+  position: absolute;
+  inset: 1rem;
+  border-radius: 50%;
+  border: 1px solid var(--wi-accent);
+  opacity: 0;
+  animation: wi-status-ring 3.6s var(--wi-ease-out) calc(var(--wi-ring-step, 0) * 1.2s) infinite;
+}
+
+/* Keyframes */
+
+@keyframes wi-status-glow {
+  to {
+    translate: -46% 6%;
+    scale: 1.12;
+  }
+}
+
+@keyframes wi-status-floor {
+  to {
+    background-position: 0 3.5rem;
+  }
+}
+
+@keyframes wi-status-twinkle {
+  50% {
+    opacity: 0.9;
+    scale: 1.5;
+  }
+}
+
+@keyframes wi-status-spot-x {
+  from {
+    --wi-spot-x: 14%;
+  }
+
+  to {
+    --wi-spot-x: 86%;
+  }
+}
+
+@keyframes wi-status-spot-y {
+  from {
+    --wi-spot-y: 30%;
+  }
+
+  to {
+    --wi-spot-y: 70%;
+  }
+}
+
+@keyframes wi-status-orbit {
+  from {
+    offset-distance: 0%;
+  }
+
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes wi-status-scan {
+  0%,
+  100% {
+    top: 6%;
+    opacity: 0;
+  }
+
+  15%,
+  85% {
+    opacity: 1;
+  }
+
+  50% {
+    top: 92%;
+  }
+}
+
+@keyframes wi-status-glitch {
+  0%,
+  88%,
+  94%,
+  100% {
+    transform: none;
+    clip-path: none;
+  }
+
+  89% {
+    transform: translateX(-0.025em);
+    clip-path: inset(18% 0 58% 0);
+  }
+
+  91% {
+    transform: translateX(0.03em);
+    clip-path: inset(55% 0 12% 0);
+  }
+
+  93% {
+    transform: translateX(-0.015em);
+    clip-path: inset(0 0 80% 0);
+  }
+}
+
+@keyframes wi-status-stripes {
+  to {
+    background-position: 0.2546em 0;
+  }
+}
+
+@keyframes wi-status-pulse {
+  50% {
+    opacity: 0.55;
+    scale: 0.985;
+  }
+}
+
+@keyframes wi-status-ring {
+  from {
+    opacity: 0.55;
+    scale: 0.75;
+  }
+
+  to {
+    opacity: 0;
+    scale: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wi-status__glow,
+  .wi-status__floor::before,
+  .wi-status__star,
+  .wi-status__code,
+  .wi-status__moon,
+  .wi-status__scan,
+  .wi-status[data-kind] .wi-status__glyphs,
+  .wi-status[data-kind] .wi-status__digit,
+  .wi-status__ring {
+    animation: none;
+  }
+
+  .wi-status__star {
+    opacity: 0.45;
+  }
+
+  .wi-status__ring:not(:first-child) {
+    display: none;
+  }
+
+  .wi-status__ring {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .wi-status__glow,
+  .wi-status__floor,
+  .wi-status__star {
+    display: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .wi-status__backdrop,
+  .wi-status__scan,
+  .wi-status__glyphs--lit {
+    display: none;
+  }
+
+  .wi-status__glyphs--base .wi-status__digit {
+    -webkit-text-fill-color: CanvasText;
+    background: none;
+  }
+}
