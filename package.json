@@ -64,7 +64,7 @@
     "@biomejs/biome": "^2.5.14",
     "@types/node": "^24.13.4",
     "nuxt": "^4.5.2",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vue": "^3.5.42",
     "vue-tsc": "^3.3.11"
   }
