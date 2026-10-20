@@ -4,9 +4,17 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+
+- Deepened and muted the violet palette, using shade 600 in light mode and 400 in dark mode. Primary text remains readable on page and elevated surfaces, with contrasting labels on solid controls. Other accent palettes keep their existing shades.
+- Added a playground preview of primary text, buttons and switches on cards.
+
 ### Fixed
 
 - Move the fallback focus outline into the base layer: it no longer overrides component focus styles, which drew a second outline inside inputs and chat prompts.
+
+- Keep the full violet ramp in generated CSS so Nuxt UI resolves the brand shades even when no utility refers to them directly.
+- Enforce LF line endings for source files on Windows as well as CI.
 
 ## [1.1.1] - 2026-10-22
 

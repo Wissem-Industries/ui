@@ -68,6 +68,8 @@ Kinds: `not-found`, `bad-request`, `unauthorized`, `forbidden`, `too-many-reques
 
 ### Tokens and glass
 
+The brand uses a muted violet palette: `#7047B8` (600) in light mode and `#9875D5` (400) in dark mode. Primary text keeps at least 4.5:1 contrast on the page and elevated card surfaces. Applications can still select another primary palette through `ui.colors.primary`.
+
 Tokens live in `app/assets/css/tokens.css` (surfaces, radii, durations, easings) and are not redefined by applications. Floating layers (menus, popovers, dialogs, toasts) use the `wi-glass` material, which turns opaque with reduced transparency, higher contrast or without `backdrop-filter`. Keep it off repeated list items.
 
 ## Development

@@ -3,6 +3,23 @@
  * Components read these tokens; products never redefine them locally.
  */
 
+/* Runtime palette switches need every shade, even without matching utility classes.
+ * Keep these outside Tailwind's theme layer so consumer styles retain the brand palette. */
+:root,
+:host {
+  --color-violet-50: #f6f3fc;
+  --color-violet-100: #ede6f8;
+  --color-violet-200: #dccdf0;
+  --color-violet-300: #c5ade6;
+  --color-violet-400: #9875d5;
+  --color-violet-500: #8258c6;
+  --color-violet-600: #7047b8;
+  --color-violet-700: #5c369e;
+  --color-violet-800: #4c2c81;
+  --color-violet-900: #402869;
+  --color-violet-950: #281844;
+}
+
 :root {
   /* Base radius. Nuxt UI derives rounded-sm/md/lg/xl/2xl from it. */
   --ui-radius: 0.25rem;

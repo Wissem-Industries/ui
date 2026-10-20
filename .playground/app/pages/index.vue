@@ -63,7 +63,7 @@ const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'error', '
     <ShowcaseSection
       id="colors"
       title="Colors"
-      description="Violet is the brand color. In light mode it uses the 600 step, which keeps 4.5:1 for text on the page."
+      description="A muted violet: 600 in light mode, 400 in dark mode. Primary text stays readable on page and card surfaces."
     >
       <div class="flex flex-wrap gap-2">
         <UBadge
@@ -83,6 +83,22 @@ const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'error', '
           variant="solid"
         />
       </div>
+    </ShowcaseSection>
+
+    <ShowcaseSection
+      id="accent-preview"
+      title="Accent on cards"
+      description="Review text, actions and controls together in both themes."
+    >
+      <UCard>
+        <div class="flex flex-wrap items-center gap-4">
+          <p class="text-sm text-primary">Primary text on an elevated surface</p>
+          <UButton label="Primary action" variant="solid" />
+          <UButton label="Secondary action" variant="subtle" />
+          <UButton label="Text link" variant="link" />
+          <USwitch :default-value="true" label="Enabled" />
+        </div>
+      </UCard>
     </ShowcaseSection>
 
     <ShowcaseSection

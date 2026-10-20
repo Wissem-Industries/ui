@@ -9,6 +9,7 @@ Wissem UI est le système de design partagé et le Nuxt Layer des produits compa
 - Les applications compatibles utilisent `UApp` à la racine. Le favicon fourni est remplaçable par `public/favicon.ico` dans un produit.
 - Le Layer fournit `app/error.vue` (`WStatusPage` : 404, 403, 500, maintenance, hors ligne, bientôt) : une application n'écrit pas sa propre page d'erreur sans besoin, elle peut réutiliser `WStatusPage` avec ses textes. Textes en français et en anglais dans `app/utils/wi-status.ts`.
 - Geist et Geist Mono sont locaux au paquet; ne pas réintroduire une dépendance aux Google Fonts pour le rendu normal.
+- L'accent violet reste sombre et modéré en saturation dans les deux thèmes : palette partagée dans `tokens.css`, primaire 600 en clair et 400 en sombre. Vérifier le contraste sur les pages, les cartes et les contrôles pleins; ne pas réintroduire le violet pastel en sombre.
 - Ce paquet n’est pas l’identité métier de produits nécessitant un système sectoriel tel que DSFR; leurs besoins restent dans leurs dépôts.
 
 ## Stack et publication
