@@ -63,7 +63,7 @@ const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'error', '
     <ShowcaseSection
       id="colors"
       title="Colors"
-      description="A muted violet: 600 in light mode, 400 in dark mode. Primary text stays readable on page and card surfaces."
+      description="Electric violet: #7F00FF fills with white labels in both themes, #AA55FF for text in dark mode. Secondary buttons always use the primary subtle style."
     >
       <div class="flex flex-wrap gap-2">
         <UBadge
@@ -94,11 +94,27 @@ const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'error', '
         <div class="flex flex-wrap items-center gap-4">
           <p class="text-sm text-primary">Primary text on an elevated surface</p>
           <UButton label="Primary action" variant="solid" />
-          <UButton label="Secondary action" variant="subtle" />
+          <UButton label="Secondary action" color="secondary" />
           <UButton label="Text link" variant="link" />
           <USwitch :default-value="true" label="Enabled" />
         </div>
       </UCard>
+    </ShowcaseSection>
+
+    <ShowcaseSection
+      id="secondary-actions"
+      title="Secondary actions"
+      description="Secondary always means primary + subtle, even if another variant is requested."
+    >
+      <div class="flex flex-wrap gap-2">
+        <UButton
+          v-for="variant in (['solid', 'outline', 'soft', 'subtle', 'ghost', 'link'] as const)"
+          :key="variant"
+          :label="`Secondary / ${variant}`"
+          color="secondary"
+          :variant="variant"
+        />
+      </div>
     </ShowcaseSection>
 
     <ShowcaseSection

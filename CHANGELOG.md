@@ -6,7 +6,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Changed
 
-- Deepened and muted the violet palette, using shade 600 in light mode and 400 in dark mode. Primary text remains readable on page and elevated surfaces, with contrasting labels on solid controls. Other accent palettes keep their existing shades.
+- Use a vivid, blue-leaning electric violet primary inspired by Figma's `#7F00FF`. Brand fills keep white labels in both themes; text uses `#AA55FF` in dark mode. Keep the brand ramp in a dedicated `wsm-violet` namespace, leaving Tailwind's palettes and status colors unchanged.
+- Secondary buttons always use the primary subtle style, including when another variant is requested.
 - Added a playground preview of primary text, buttons and switches on cards.
 
 ### Fixed

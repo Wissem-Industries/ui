@@ -9,7 +9,8 @@ Wissem UI est le système de design partagé et le Nuxt Layer des produits compa
 - Les applications compatibles utilisent `UApp` à la racine. Le favicon fourni est remplaçable par `public/favicon.ico` dans un produit.
 - Le Layer fournit `app/error.vue` (`WStatusPage` : 404, 403, 500, maintenance, hors ligne, bientôt) : une application n'écrit pas sa propre page d'erreur sans besoin, elle peut réutiliser `WStatusPage` avec ses textes. Textes en français et en anglais dans `app/utils/wi-status.ts`.
 - Geist et Geist Mono sont locaux au paquet; ne pas réintroduire une dépendance aux Google Fonts pour le rendu normal.
-- L'accent violet reste sombre et modéré en saturation dans les deux thèmes : palette partagée dans `tokens.css`, primaire 600 en clair et 400 en sombre. Vérifier le contraste sur les pages, les cartes et les contrôles pleins; ne pas réintroduire le violet pastel en sombre.
+- L'accent primaire est un violet électrique, saturé et tirant vers le bleu (référence Figma `#7F00FF`), pas un violet grisé. Palette dédiée `wsm-violet` dans `tokens.css`, 600 en clair et 400 en sombre. Ne pas modifier les palettes Tailwind ni les couleurs secondaires ou de statut pour ajuster le primaire. Vérifier le contraste sur les pages, les cartes et les contrôles pleins.
+- Pour les boutons, `secondary` signifie toujours le style `subtle` avec l'accent primaire courant, quelle que soit la variante demandée. Ne pas lui appliquer un aplat bleu, neutre ou un autre style. Le violet plein garde un libellé blanc en sombre; les textes et liens utilisent une nuance plus lumineuse.
 - Ce paquet n’est pas l’identité métier de produits nécessitant un système sectoriel tel que DSFR; leurs besoins restent dans leurs dépôts.
 
 ## Stack et publication

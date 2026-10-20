@@ -68,7 +68,9 @@ Kinds: `not-found`, `bad-request`, `unauthorized`, `forbidden`, `too-many-reques
 
 ### Tokens and glass
 
-The brand uses a muted violet palette: `#7047B8` (600) in light mode and `#9875D5` (400) in dark mode. Primary text keeps at least 4.5:1 contrast on the page and elevated card surfaces. Applications can still select another primary palette through `ui.colors.primary`.
+The primary uses the dedicated `wsm-violet` palette, inspired by [Figma's violet reference](https://www.figma.com/colors/violet/): `#7F00FF` fills with white labels in both themes, and `#AA55FF` for text in dark mode. Primary text keeps at least 4.5:1 contrast on page and elevated card surfaces. Tailwind's built-in palettes and status colors are unchanged. Applications can still select another primary palette through `ui.colors.primary`.
+
+For buttons, `color="secondary"` always renders the primary `subtle` style, regardless of the requested variant. It follows the current primary accent instead of introducing another color. Use `variant="subtle"` with the default color for the same appearance.
 
 Tokens live in `app/assets/css/tokens.css` (surfaces, radii, durations, easings) and are not redefined by applications. Floating layers (menus, popovers, dialogs, toasts) use the `wi-glass` material, which turns opaque with reduced transparency, higher contrast or without `backdrop-filter`. Keep it off repeated list items.
 
