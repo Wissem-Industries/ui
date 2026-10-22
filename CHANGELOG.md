@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-10-22
+
+### Fixed
+
+- Include the visible language code in the language selector accessible name.
+
+
+### Changed
+
+- Use Golar for Vue type checking with TypeScript 7; keep Node available in the validation image.
+
 ## [1.1.0] - 2026-10-08
 
 ### Added
@@ -21,7 +32,6 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [1.0.0] - 2026-10-02
 
 First stable release.
-
 - Nuxt layer with the Wissem theme: violet primary, neutral palette, design tokens, local Geist fonts, Remix and Circle Flags icons.
 - Glass material for menus, popovers, dialogs and toasts, opaque with reduced transparency or higher contrast.
 - Components: `WNavbar`, `WColorModeButton`, `WLocaleSelect`, `WAmbient`, `WGlassCard`, `WGridBackground`, entrance and scroll reveal animations.

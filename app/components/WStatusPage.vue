@@ -102,7 +102,7 @@ function goBack() {
   window.history.back()
 }
 
-function retry() {
+function retryPage() {
   if (instance?.vnode.props?.onRetry) emit('retry')
   else window.location.reload()
 }
@@ -112,7 +112,7 @@ let reloadTimer: ReturnType<typeof setTimeout> | undefined
 
 function onOnline() {
   online.value = true
-  reloadTimer = setTimeout(retry, 900)
+  reloadTimer = setTimeout(retryPage, 900)
 }
 
 onMounted(() => {
@@ -291,7 +291,7 @@ onBeforeUnmount(() => cancelAnimationFrame(frame))
               size="lg"
               :variant="meta.accent === 'neutral' ? 'subtle' : 'solid'"
               :color="buttonColor"
-              @click="retry"
+              @click="retryPage"
             />
             <UButton
               v-if="showHome"

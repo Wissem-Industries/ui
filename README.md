@@ -44,16 +44,16 @@ Both cookies are written for the domain set in `WSM_COOKIE_DOMAIN` at build time
 
 ### Components
 
-| Component | Purpose |
-| --- | --- |
-| `WNavbar` | Floating navigation bar. Icons only below 640 px, a sliding indicator on the active link. Keep the `#trailing` slot to icon buttons on phones. |
-| `WColorModeButton` | Light and dark toggle. |
-| `WLocaleSelect` | Language menu. Options can carry a `to` link. |
-| `WAmbient` | Blurred copy of an image or of the primary color behind its content. |
-| `WGlassCard` | Featured card on a glass surface. |
-| `WGridBackground` | Background grid that fades downwards. |
-| `WStatusPage` | Full-page status screen: 404, 401, 403, 429, 500, 503, offline, coming soon. |
-| `wi-enter`, `v-reveal` | Entrance and scroll reveal animations, disabled with reduced motion. |
+| Component              | Purpose                                                                                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `WNavbar`              | Floating navigation bar. Icons only below 640 px, a sliding indicator on the active link. Keep the `#trailing` slot to icon buttons on phones. |
+| `WColorModeButton`     | Light and dark toggle.                                                                                                                         |
+| `WLocaleSelect`        | Language menu. Options can carry a `to` link.                                                                                                  |
+| `WAmbient`             | Blurred copy of an image or of the primary color behind its content.                                                                           |
+| `WGlassCard`           | Featured card on a glass surface.                                                                                                              |
+| `WGridBackground`      | Background grid that fades downwards.                                                                                                          |
+| `WStatusPage`          | Full-page status screen: 404, 401, 403, 429, 500, 503, offline, coming soon.                                                                   |
+| `wi-enter`, `v-reveal` | Entrance and scroll reveal animations, disabled with reduced motion.                                                                           |
 
 ### Error and status pages
 

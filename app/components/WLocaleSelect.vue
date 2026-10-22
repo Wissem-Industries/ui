@@ -40,7 +40,7 @@ const items = computed<DropdownMenuItem[]>(() =>
     :ui="{ content: 'min-w-44', itemLeadingIcon: 'size-4' }"
   >
     <UButton
-      :aria-label="label"
+      :aria-label="`${current.toUpperCase()} — ${label}`"
       color="neutral"
       variant="ghost"
       size="sm"

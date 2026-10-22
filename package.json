@@ -2,7 +2,7 @@
   "name": "@wissem-industries/ui",
   "description": "Shared design system for the wissem.pro applications, published as a Nuxt layer.",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "author": {
     "name": "Wissem's Industries",
@@ -46,7 +46,7 @@
     "preview": "nuxt preview .playground",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "typecheck": "nuxt typecheck .playground",
+    "typecheck": "node ./node_modules/nuxt/bin/nuxt.mjs typecheck .playground --checker=golar",
     "pack:check": "bun pm pack --dry-run",
     "release": "bun scripts/release.mjs",
     "check": "bun run lint && bun run typecheck && bun run build && bun run pack:check",
@@ -55,17 +55,18 @@
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",
     "@fontsource-variable/geist-mono": "^5.3.0",
-    "@iconify-json/circle-flags": "^1.2.11",
+    "@iconify-json/circle-flags": "^1.2.12",
     "@iconify-json/ri": "^1.2.10",
-    "@nuxt/ui": "^4.11.1",
+    "@nuxt/ui": "^4.12.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.14",
-    "@types/node": "^24.13.4",
-    "nuxt": "^4.5.2",
-    "typescript": "^6.0.3",
-    "vue": "^3.5.42",
-    "vue-tsc": "^3.3.11"
+    "@biomejs/biome": "^2.6.2",
+    "@golar/vue": "0.1.10",
+    "@types/node": "^26.6.5",
+    "golar": "0.1.10",
+    "nuxt": "^4.6.2",
+    "typescript": "^7.0.2",
+    "vue": "^3.5.44"
   }
 }
