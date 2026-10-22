@@ -46,7 +46,7 @@
     "preview": "nuxt preview .playground",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "typecheck": "nuxt typecheck .playground",
+    "typecheck": "node ./node_modules/nuxt/bin/nuxt.mjs typecheck .playground --checker=golar",
     "pack:check": "bun pm pack --dry-run",
     "release": "bun scripts/release.mjs",
     "check": "bun run lint && bun run typecheck && bun run build && bun run pack:check",
@@ -66,6 +66,7 @@
     "nuxt": "^4.5.2",
     "typescript": "^7.0.2",
     "vue": "^3.5.42",
-    "vue-tsc": "^3.3.11"
+    "@golar/vue": "0.1.10",
+    "golar": "0.1.10"
   }
 }
