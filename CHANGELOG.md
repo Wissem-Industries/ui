@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Fixed
+
+- Move the fallback focus outline into the base layer: it no longer overrides component focus styles, which drew a second outline inside inputs and chat prompts.
+
 ## [1.1.1] - 2026-10-22
 
 ### Fixed
