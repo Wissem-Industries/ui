@@ -13,7 +13,6 @@ All notable changes to this project are documented here. The format follows [Kee
 ### Fixed
 
 - Move the fallback focus outline into the base layer: it no longer overrides component focus styles, which drew a second outline inside inputs and chat prompts.
-
 - Keep the full violet ramp in generated CSS so Nuxt UI resolves the brand shades even when no utility refers to them directly.
 - Enforce LF line endings for source files on Windows as well as CI.
 
