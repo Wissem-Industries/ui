@@ -1,15 +1,26 @@
 version: 2
 updates:
   - package-ecosystem: bun
-    directory: "/"
+    directory: /
     schedule:
-      interval: weekly
-      day: tuesday
-      time: "06:00"
-      timezone: "Europe/Paris"
-    open-pull-requests-limit: 5
+      interval: cron
+      cronjob: 10 7 10 * *
+      timezone: Europe/Paris
+    open-pull-requests-limit: 1
     groups:
+      bun-security:
+        applies-to: security-updates
+        patterns:
+          - '*'
       bun-minor-patch:
+        patterns:
+          - '*'
         update-types:
-          - "minor"
-          - "patch"
+          - minor
+          - patch
+    cooldown:
+      default-days: 7
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
