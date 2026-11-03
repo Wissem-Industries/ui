@@ -4,6 +4,18 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+
+- Use a vivid, blue-leaning electric violet primary inspired by Figma's `#7F00FF`. Brand fills keep white labels in both themes; text uses `#AA55FF` in dark mode. Keep the brand ramp in a dedicated `wsm-violet` namespace, leaving Tailwind's palettes and status colors unchanged.
+- Secondary buttons always use the primary subtle style, including when another variant is requested.
+- Added a playground preview of primary text, buttons and switches on cards.
+
+### Fixed
+
+- Move the fallback focus outline into the base layer: it no longer overrides component focus styles, which drew a second outline inside inputs and chat prompts.
+- Keep the full violet ramp in generated CSS so Nuxt UI resolves the brand shades even when no utility refers to them directly.
+- Enforce LF line endings for source files on Windows as well as CI.
+
 ## [1.1.1] - 2026-10-22
 
 ### Fixed

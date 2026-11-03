@@ -3,6 +3,35 @@
  * Components read these tokens; products never redefine them locally.
  */
 
+/* Runtime palette switches need every shade, even without matching utility classes.
+ * A separate namespace leaves Tailwind and semantic color palettes untouched. */
+:root,
+:host {
+  --color-wsm-violet-50: #f5ebff;
+  --color-wsm-violet-100: #ead6ff;
+  --color-wsm-violet-200: #d5adff;
+  --color-wsm-violet-300: #bf80ff;
+  --color-wsm-violet-400: #aa55ff;
+  --color-wsm-violet-500: #8c1aff;
+  --color-wsm-violet-600: #7f00ff;
+  --color-wsm-violet-700: #6300c6;
+  --color-wsm-violet-800: #47008e;
+  --color-wsm-violet-900: #2b0057;
+  --color-wsm-violet-950: #1c0039;
+}
+
+:root {
+  --wsm-primary-fill: var(--ui-primary);
+  --wsm-primary-on-fill: var(--ui-text-inverted);
+  --wsm-primary-fill-hover: color-mix(in oklab, var(--ui-primary) 75%, transparent);
+}
+
+:root[data-wsm-primary="wsm-violet"] {
+  --wsm-primary-fill: var(--color-wsm-violet-600);
+  --wsm-primary-on-fill: var(--color-white);
+  --wsm-primary-fill-hover: var(--color-wsm-violet-700);
+}
+
 :root {
   /* Base radius. Nuxt UI derives rounded-sm/md/lg/xl/2xl from it. */
   --ui-radius: 0.25rem;

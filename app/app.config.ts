@@ -7,7 +7,7 @@ const glassEnter =
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'violet',
+      primary: 'wsm-violet',
       neutral: 'neutral',
     },
     icons: {
@@ -56,6 +56,19 @@ export default defineAppConfig({
       warning: 'i-ri-alert-line',
     },
     button: {
+      compoundVariants: [
+        {
+          color: 'secondary',
+          class:
+            'text-primary hover:text-primary active:text-primary disabled:text-primary aria-disabled:text-primary ring ring-inset ring-primary/25 bg-primary/10 hover:bg-primary/15 active:bg-primary/15 disabled:bg-primary/10 aria-disabled:bg-primary/10 dark:disabled:bg-primary/10 dark:aria-disabled:bg-primary/10 outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary no-underline hover:no-underline',
+        },
+        {
+          color: 'primary',
+          variant: 'solid',
+          class:
+            'bg-(--wsm-primary-fill) text-(--wsm-primary-on-fill) hover:bg-(--wsm-primary-fill-hover) active:bg-(--wsm-primary-fill-hover) disabled:bg-(--wsm-primary-fill) aria-disabled:bg-(--wsm-primary-fill)',
+        },
+      ],
       slots: {
         base: 'font-medium',
       },
@@ -64,6 +77,13 @@ export default defineAppConfig({
       },
     },
     badge: {
+      compoundVariants: [
+        {
+          color: 'primary',
+          variant: 'solid',
+          class: 'bg-(--wsm-primary-fill) text-(--wsm-primary-on-fill)',
+        },
+      ],
       slots: {
         base: 'rounded-full',
       },
@@ -71,6 +91,19 @@ export default defineAppConfig({
         variant: 'subtle',
         size: 'lg',
       },
+    },
+    tabs: {
+      compoundVariants: [
+        {
+          color: 'primary',
+          variant: 'pill',
+          class: {
+            indicator: 'bg-(--wsm-primary-fill)',
+            trigger:
+              'data-[state=active]:text-(--wsm-primary-on-fill) in-[[data-slot=list]:not(:has([data-slot=indicator]))]:data-[state=active]:before:bg-(--wsm-primary-fill)',
+          },
+        },
+      ],
     },
     input: {
       defaultVariants: {
