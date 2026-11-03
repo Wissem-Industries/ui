@@ -12,16 +12,16 @@ updates:
       bun-security:
         applies-to: security-updates
         patterns:
-          - '*'
+          - "*"
       bun-minor-patch:
         patterns:
-          - '*'
+          - "*"
         update-types:
           - minor
           - patch
     cooldown:
       default-days: 7
     ignore:
-      - dependency-name: '*'
+      - dependency-name: "*"
         update-types:
           - version-update:semver-major
