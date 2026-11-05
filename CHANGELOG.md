@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-05
+
 ### Added
 
 - Application components shared by the private applications: `WPageHeader`, `WStatTiles`, `WFilterBar`, `WSegmented`, `WPill`, `WSection`, `WActionBar`, `WEmptyState` and `WAuthGate`, with tone classes `wiToneSurface` and `wiToneFill`. Playground page `/application`.
