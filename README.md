@@ -55,6 +55,24 @@ Both cookies are written for the domain set in `WSM_COOKIE_DOMAIN` at build time
 | `WStatusPage`          | Full-page status screen: 404, 401, 403, 429, 500, 503, offline, coming soon.                                                                   |
 | `wi-enter`, `v-reveal` | Entrance and scroll reveal animations, disabled with reduced motion.                                                                           |
 
+### Application components
+
+Building blocks of the private applications (Stages, Housing): same header, figures, filters, pills and detail sections everywhere. They carry no business rule; texts come from props, built-in labels follow the language of the status screens.
+
+| Component     | Purpose                                                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `WPageHeader` | Eyebrow, title, description and actions on the right.                                                                    |
+| `WStatTiles`  | Row of key figures; a tile with `to` is a link to the matching list, a zero value is dimmed.                             |
+| `WFilterBar`  | Search field, folding panel of filters with a counter of active filters, reset button. `leading` slot for a view switch. |
+| `WSegmented`  | Switch between two to four views of a list (`v-model`).                                                                  |
+| `WPill`       | Status pill with a tone (`primary`, `success`, `warning`, `error`, `info`, `neutral`), AA contrast in both themes.       |
+| `WSection`    | Titled block of a detail page, with an `action` slot.                                                                    |
+| `WActionBar`  | Main actions of a detail page: floating bar within thumb reach on phones, inline row from `md`.                          |
+| `WEmptyState` | Empty list, missing item or failed load, with buttons in the default slot.                                               |
+| `WAuthGate`   | Sign-in screen of a private application (Wissem SSO), with a denied state.                                               |
+
+`wiToneSurface` and `wiToneFill` expose the tone classes for custom blocks.
+
 ### Error and status pages
 
 The layer ships an `app/error.vue`: a missing route, a thrown `createError` or a server error renders `WStatusPage` with the right kind, in French or English (language of `@nuxtjs/i18n` when installed, then the `wsm_locale` cookie, then the browser). An application that defines its own `app/error.vue` replaces it and can still use the component:

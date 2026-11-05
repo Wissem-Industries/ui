@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Added
+
+- Application components shared by the private applications: `WPageHeader`, `WStatTiles`, `WFilterBar`, `WSegmented`, `WPill`, `WSection`, `WActionBar`, `WEmptyState` and `WAuthGate`, with tone classes `wiToneSurface` and `wiToneFill`. Playground page `/application`.
+
 ### Changed
 
 - Use a vivid, blue-leaning electric violet primary inspired by Figma's `#7F00FF`. Brand fills keep white labels in both themes; text uses `#AA55FF` in dark mode. Keep the brand ramp in a dedicated `wsm-violet` namespace, leaving Tailwind's palettes and status colors unchanged.
