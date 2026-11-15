@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+
+- Update Nuxt layer dependencies: Tailwind CSS 4.3.5, Vue 3.5.45, Golar 0.1.11 and Biome 2.6.8. Development tooling only; the published layer is unchanged.
+
 ## [1.2.0] - 2026-11-05
 
 ### Added
@@ -28,7 +32,6 @@ All notable changes to this project are documented here. The format follows [Kee
 
 - Include the visible language code in the language selector accessible name.
 
-
 ### Changed
 
 - Use Golar for Vue type checking with TypeScript 7; keep Node available in the validation image.
@@ -50,6 +53,7 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [1.0.0] - 2026-10-02
 
 First stable release.
+
 - Nuxt layer with the Wissem theme: violet primary, neutral palette, design tokens, local Geist fonts, Remix and Circle Flags icons.
 - Glass material for menus, popovers, dialogs and toasts, opaque with reduced transparency or higher contrast.
 - Components: `WNavbar`, `WColorModeButton`, `WLocaleSelect`, `WAmbient`, `WGlassCard`, `WGridBackground`, entrance and scroll reveal animations.
