@@ -12,7 +12,7 @@ Built with Nuxt 4, Vue 3, Nuxt UI 4 and Tailwind CSS 4.
 
 ## Usage
 
-The package is published on GitHub Packages. Add a token with `read:packages` to your user `.npmrc`, then:
+The source is public, but the `@wissem-industries/ui` package is published privately on GitHub Packages, for the wissem.pro applications: installing it needs access to the organisation and a token with `read:packages` in your user `.npmrc`. Then:
 
 ```bash
 bun add --dev @wissem-industries/ui
