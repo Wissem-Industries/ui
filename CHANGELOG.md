@@ -17,7 +17,7 @@ All notable changes to this project are documented here. The format follows [Kee
 ### Changed
 
 - Update Nuxt layer dependencies: Tailwind CSS 4.3.5, Vue 3.5.45, Golar 0.1.11 and Biome 2.6.8. Development tooling only; the published layer is unchanged.
-- README: state that the package is private on GitHub Packages.
+- The package is public on GitHub Packages; the README explains the token GitHub's npm registry still asks for.
 
 ## [1.2.0] - 2026-11-05
 
