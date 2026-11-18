@@ -7,7 +7,7 @@ const glassEnter =
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'wsm-violet',
+      primary: 'wsm-plum',
       neutral: 'neutral',
     },
     icons: {

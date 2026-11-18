@@ -3,21 +3,71 @@
  * Components read these tokens; products never redefine them locally.
  */
 
-/* Runtime palette switches need every shade, even without matching utility classes.
- * A separate namespace leaves Tailwind and semantic color palettes untouched. */
+/*
+ * Accent palettes, all available at runtime (the primary colour can change without a
+ * rebuild). Prune is the default; `wsm-violet` stays an alias of it for older consumers.
+ */
 :root,
 :host {
-  --color-wsm-violet-50: #f4ecff;
-  --color-wsm-violet-100: #e8d9ff;
-  --color-wsm-violet-200: #d2b3ff;
-  --color-wsm-violet-300: #b98aff;
-  --color-wsm-violet-400: #a05cff;
-  --color-wsm-violet-500: #8c3dff;
-  --color-wsm-violet-600: #7b1ff5;
-  --color-wsm-violet-700: #6612d6;
-  --color-wsm-violet-800: #500ea8;
-  --color-wsm-violet-900: #3c0b7d;
-  --color-wsm-violet-950: #24054d;
+  --color-wsm-electric-50: #f5ebff;
+  --color-wsm-electric-100: #ead6ff;
+  --color-wsm-electric-200: #d5adff;
+  --color-wsm-electric-300: #bf80ff;
+  --color-wsm-electric-400: #aa55ff;
+  --color-wsm-electric-500: #8c1aff;
+  --color-wsm-electric-600: #7f00ff;
+  --color-wsm-electric-700: #6300c6;
+  --color-wsm-electric-800: #47008e;
+  --color-wsm-electric-900: #2b0057;
+  --color-wsm-electric-950: #1c0039;
+
+  --color-wsm-amethyst-50: #f5f3ff;
+  --color-wsm-amethyst-100: #ede9fe;
+  --color-wsm-amethyst-200: #ddd6fe;
+  --color-wsm-amethyst-300: #c4b5fd;
+  --color-wsm-amethyst-400: #a78bfa;
+  --color-wsm-amethyst-500: #8b5cf6;
+  --color-wsm-amethyst-600: #7c3aed;
+  --color-wsm-amethyst-700: #6d28d9;
+  --color-wsm-amethyst-800: #5b21b6;
+  --color-wsm-amethyst-900: #4c1d95;
+  --color-wsm-amethyst-950: #2e1065;
+
+  --color-wsm-dusk-50: #f3f2ff;
+  --color-wsm-dusk-100: #e6e4ff;
+  --color-wsm-dusk-200: #cfcaff;
+  --color-wsm-dusk-300: #b8b2ff;
+  --color-wsm-dusk-400: #9b8cff;
+  --color-wsm-dusk-500: #7c6cf6;
+  --color-wsm-dusk-600: #6750e8;
+  --color-wsm-dusk-700: #5139c9;
+  --color-wsm-dusk-800: #3f2ca0;
+  --color-wsm-dusk-900: #2f2178;
+  --color-wsm-dusk-950: #1c1449;
+
+  --color-wsm-plum-50: #faf5ff;
+  --color-wsm-plum-100: #f3e8ff;
+  --color-wsm-plum-200: #ecd5ff;
+  --color-wsm-plum-300: #e0b6ff;
+  --color-wsm-plum-400: #c98bff;
+  --color-wsm-plum-500: #a855f7;
+  --color-wsm-plum-600: #9333ea;
+  --color-wsm-plum-700: #7e22ce;
+  --color-wsm-plum-800: #6b21a8;
+  --color-wsm-plum-900: #581c87;
+  --color-wsm-plum-950: #3b0764;
+
+  --color-wsm-violet-50: var(--color-wsm-plum-50);
+  --color-wsm-violet-100: var(--color-wsm-plum-100);
+  --color-wsm-violet-200: var(--color-wsm-plum-200);
+  --color-wsm-violet-300: var(--color-wsm-plum-300);
+  --color-wsm-violet-400: var(--color-wsm-plum-400);
+  --color-wsm-violet-500: var(--color-wsm-plum-500);
+  --color-wsm-violet-600: var(--color-wsm-plum-600);
+  --color-wsm-violet-700: var(--color-wsm-plum-700);
+  --color-wsm-violet-800: var(--color-wsm-plum-800);
+  --color-wsm-violet-900: var(--color-wsm-plum-900);
+  --color-wsm-violet-950: var(--color-wsm-plum-950);
 }
 
 :root {
@@ -26,10 +76,10 @@
   --wsm-primary-fill-hover: color-mix(in oklab, var(--ui-primary) 75%, transparent);
 }
 
-:root[data-wsm-primary="wsm-violet"] {
-  --wsm-primary-fill: var(--color-wsm-violet-600);
+:root[data-wsm-primary^="wsm-"] {
+  --wsm-primary-fill: var(--ui-color-primary-600);
   --wsm-primary-on-fill: var(--color-white);
-  --wsm-primary-fill-hover: var(--color-wsm-violet-700);
+  --wsm-primary-fill-hover: var(--ui-color-primary-700);
 }
 
 :root {

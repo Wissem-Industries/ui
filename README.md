@@ -93,7 +93,7 @@ Kinds: `not-found`, `bad-request`, `unauthorized`, `forbidden`, `too-many-reques
 
 ### Tokens and glass
 
-The primary uses the dedicated `wsm-violet` palette, inspired by [Figma's violet reference](https://www.figma.com/colors/violet/): `#7F00FF` fills with white labels in both themes, and `#AA55FF` for text in dark mode. Primary text keeps at least 4.5:1 contrast on page and elevated card surfaces. Tailwind's built-in palettes and status colors are unchanged. Applications can still select another primary palette through `ui.colors.primary`.
+Four accent palettes ship with the layer and can be switched at runtime through `ui.colors.primary`: `wsm-plum` (default), `wsm-amethyst`, `wsm-dusk` and `wsm-electric`; `wsm-violet` is an alias of Plum. Buttons and controls never use a solid fill, and violet labels keep at least 4.5:1 contrast on their tint with every palette. Tailwind's built-in palettes and status colours are unchanged.
 
 For buttons, `color="secondary"` always renders the primary `subtle` style, regardless of the requested variant. It follows the current primary accent instead of introducing another color. Use `variant="subtle"` with the default color for the same appearance.
 

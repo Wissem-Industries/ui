@@ -51,11 +51,11 @@ body {
 /* The text keeps its colour over a violet tint, readable in both themes. */
 ::selection {
   color: var(--ui-text-highlighted);
-  background: color-mix(in oklab, var(--color-wsm-violet-300) 55%, transparent);
+  background: color-mix(in oklab, var(--ui-color-primary-300) 55%, transparent);
 }
 
 .dark ::selection {
-  background: color-mix(in oklab, var(--color-wsm-violet-600) 60%, transparent);
+  background: color-mix(in oklab, var(--ui-color-primary-600) 60%, transparent);
 }
 
 /*
