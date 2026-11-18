@@ -1,0 +1,138 @@
+/*
+ * Buttons and form controls in the glass material, without solid fills.
+ * Outside any layer on purpose: these rules win over the Nuxt UI utilities
+ * that app.config.ts hooks them onto.
+ */
+
+.wi-button {
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  transition:
+    background-color var(--wi-duration-fast) var(--wi-ease-standard),
+    box-shadow var(--wi-duration-fast) var(--wi-ease-standard),
+    color var(--wi-duration-fast) var(--wi-ease-standard);
+}
+
+/*
+ * Labels take a deeper shade than the edge so that they keep a 4.5:1 contrast on the tint.
+ */
+.wi-button {
+  --wi-button-label: var(--color-wsm-violet-700);
+}
+
+.dark .wi-button {
+  --wi-button-label: var(--color-wsm-violet-300);
+}
+
+/* Violet glass: a tinted surface, a light rim on top and a violet edge. */
+.wi-button--primary {
+  color: var(--wi-button-label);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--ui-primary) 30%, transparent),
+    color-mix(in oklab, var(--ui-primary) 14%, transparent)
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--color-wsm-violet-200) 55%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--ui-primary) 60%, transparent),
+    0 8px 24px -10px color-mix(in oklab, var(--ui-primary) 70%, transparent);
+}
+
+.wi-button--primary:not(:disabled, [aria-disabled="true"]):hover {
+  color: var(--wi-button-label);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--ui-primary) 40%, transparent),
+    color-mix(in oklab, var(--ui-primary) 20%, transparent)
+  );
+}
+
+/* Violet outline: the accent edge and label of the primary, without its tint. */
+.wi-button--secondary {
+  color: var(--wi-button-label);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ui-primary) 55%, transparent);
+}
+
+.wi-button--secondary:not(:disabled, [aria-disabled="true"]):hover {
+  color: var(--wi-button-label);
+  background: color-mix(in oklab, var(--ui-primary) 10%, transparent);
+}
+
+/* Checked checkbox and radio: a violet tint inside a violet edge, the mark in violet. */
+.wi-control-on,
+.wi-radio-on {
+  color: var(--ui-primary);
+  background: color-mix(in oklab, var(--ui-primary) 26%, transparent);
+  box-shadow: inset 0 0 0 1.5px var(--ui-primary);
+}
+
+.wi-radio-on::after {
+  background: var(--ui-primary);
+}
+
+/* Switch: a glass track, tinted when on, with a light thumb that glows. */
+.wi-switch[data-state="unchecked"] {
+  background: color-mix(in oklab, var(--ui-text) 8%, transparent);
+  box-shadow: inset 0 0 0 1px var(--ui-border-accented);
+}
+
+.wi-switch[data-state="checked"] {
+  background: color-mix(in oklab, var(--ui-primary) 32%, transparent);
+  box-shadow: inset 0 0 0 1.5px var(--ui-primary);
+}
+
+.wi-switch-thumb[data-state="checked"] {
+  background: white;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--ui-primary) 55%, transparent),
+    0 1px 3px rgb(0 0 0 / 0.18);
+}
+
+.dark .wi-switch-thumb[data-state="checked"] {
+  background: color-mix(in oklab, var(--color-wsm-violet-200) 80%, white);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--ui-primary) 65%, transparent);
+}
+
+/* Key figure that leads to its list: the lift and violet edge of interactive cards. */
+.wi-stat-link {
+  transition:
+    translate var(--wi-duration-base) var(--wi-ease-out),
+    box-shadow var(--wi-duration-base) var(--wi-ease-standard);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wi-stat-link:hover,
+  .wi-stat-link:focus-visible {
+    --wi-glass-edge: color-mix(in oklab, var(--ui-primary) 55%, transparent);
+    translate: 0 -2px;
+  }
+}
+
+/* Progress: the range of the shapes rather than a flat bar. */
+.wi-progress {
+  background: linear-gradient(90deg, var(--color-wsm-violet-300), var(--color-wsm-violet-600));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wi-button,
+  .wi-stat-link {
+    transition: none;
+  }
+
+  .wi-stat-link:hover,
+  .wi-stat-link:focus-visible {
+    translate: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .wi-button {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .wi-button--primary {
+    background: var(--ui-bg-elevated);
+  }
+}

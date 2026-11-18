@@ -6,7 +6,7 @@ Shared design system for the `wissem.pro` applications, published as a Nuxt laye
 [![Release](https://img.shields.io/github/v/release/Wissem-Industries/ui?sort=semver)](https://github.com/Wissem-Industries/ui/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-The layer brings the theme, design tokens, Nuxt UI defaults, local Geist fonts, Remix and Circle Flags icons, and a few shared components. Applications keep their own pages and logic.
+The layer brings the theme, design tokens, Nuxt UI defaults, local Funnel Display, Funnel Sans and Geist Mono fonts, Remix and Circle Flags icons, and a few shared components. Applications keep their own pages and logic.
 
 Built with Nuxt 4, Vue 3, Nuxt UI 4 and Tailwind CSS 4.
 

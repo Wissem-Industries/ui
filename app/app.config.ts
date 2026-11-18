@@ -56,17 +56,18 @@ export default defineAppConfig({
       warning: 'i-ri-alert-line',
     },
     button: {
+      // No solid fill: the primary button is violet glass, the secondary one clear glass
+      // (controls.css). Outline, ghost and link keep the Nuxt UI looks.
       compoundVariants: [
         {
-          color: 'secondary',
-          class:
-            'text-primary hover:text-primary active:text-primary disabled:text-primary aria-disabled:text-primary ring ring-inset ring-primary/25 bg-primary/10 hover:bg-primary/15 active:bg-primary/15 disabled:bg-primary/10 aria-disabled:bg-primary/10 dark:disabled:bg-primary/10 dark:aria-disabled:bg-primary/10 outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary no-underline hover:no-underline',
+          color: 'primary',
+          variant: ['solid', 'soft', 'subtle'],
+          class: 'wi-button wi-button--primary',
         },
         {
-          color: 'primary',
-          variant: 'solid',
-          class:
-            'bg-(--wsm-primary-fill) text-(--wsm-primary-on-fill) hover:bg-(--wsm-primary-fill-hover) active:bg-(--wsm-primary-fill-hover) disabled:bg-(--wsm-primary-fill) aria-disabled:bg-(--wsm-primary-fill)',
+          color: 'secondary',
+          variant: ['solid', 'soft', 'subtle', 'outline'],
+          class: 'wi-button wi-button--secondary',
         },
       ],
       slots: {
@@ -81,7 +82,7 @@ export default defineAppConfig({
         {
           color: 'primary',
           variant: 'solid',
-          class: 'bg-(--wsm-primary-fill) text-(--wsm-primary-on-fill)',
+          class: 'wi-control-on',
         },
       ],
       slots: {
@@ -98,12 +99,23 @@ export default defineAppConfig({
           color: 'primary',
           variant: 'pill',
           class: {
-            indicator: 'bg-(--wsm-primary-fill)',
-            trigger:
-              'data-[state=active]:text-(--wsm-primary-on-fill) in-[[data-slot=list]:not(:has([data-slot=indicator]))]:data-[state=active]:before:bg-(--wsm-primary-fill)',
+            indicator: 'wi-control-on',
+            trigger: 'data-[state=active]:text-primary',
           },
         },
       ],
+    },
+    checkbox: {
+      variants: { color: { primary: { indicator: 'wi-control-on' } } },
+    },
+    radioGroup: {
+      variants: { color: { primary: { indicator: 'wi-radio-on' } } },
+    },
+    switch: {
+      slots: { base: 'wi-switch', thumb: 'wi-switch-thumb' },
+    },
+    progress: {
+      variants: { color: { primary: { indicator: 'wi-progress' } } },
     },
     input: {
       defaultVariants: {
