@@ -1,15 +1,18 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/funnel-sans";
+@import "@fontsource-variable/funnel-display";
 @import "@fontsource-variable/geist-mono";
 @import "./tokens.css";
 @import "./glass.css";
 @import "./motion.css";
 @import "./decor.css";
 @import "./status.css";
+@import "./controls.css";
 
 @theme {
-  --font-sans: "Geist Variable", "Geist", sans-serif;
+  --font-sans: "Funnel Sans Variable", "Funnel Sans", system-ui, sans-serif;
+  --font-display: "Funnel Display Variable", "Funnel Display", system-ui, sans-serif;
   --font-mono: "Geist Mono Variable", "Geist Mono", monospace;
 }
 
@@ -45,14 +48,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* The text keeps its colour over a violet tint, readable in both themes. */
 ::selection {
-  color: var(--ui-color-violet-950);
-  background: var(--ui-color-violet-200);
+  color: var(--ui-text-highlighted);
+  background: color-mix(in oklab, var(--color-wsm-violet-300) 55%, transparent);
 }
 
 .dark ::selection {
-  color: var(--ui-color-violet-50);
-  background: var(--ui-color-violet-800);
+  background: color-mix(in oklab, var(--color-wsm-violet-600) 60%, transparent);
 }
 
 /*
@@ -60,6 +63,10 @@ body {
  * styles of components (ring, outline-none) still win over it.
  */
 @layer base {
+  :where(h1, h2, h3) {
+    font-family: var(--font-display);
+  }
+
   :where(a, button, input, textarea, select, [tabindex]):focus-visible {
     outline: 2px solid var(--ui-primary);
     outline-offset: 3px;

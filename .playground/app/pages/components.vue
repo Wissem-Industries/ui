@@ -2,6 +2,10 @@
 const name = ref('')
 const message = ref('')
 const choice = ref('Nuxt')
+const accepted = ref(true)
+const copy = ref(false)
+const notify = ref(true)
+const view = ref('list')
 </script>
 
 <template>
@@ -25,7 +29,8 @@ const choice = ref('Nuxt')
             </div>
             <div class="flex flex-wrap items-center gap-2">
               <UButton label="Primary action" />
-              <UButton label="Secondary action" variant="outline" />
+              <UButton label="Secondary action" color="secondary" />
+              <UButton label="Outline" color="neutral" variant="outline" />
               <UButton label="Ghost action" color="neutral" variant="ghost" />
             </div>
             <div class="flex flex-wrap items-center gap-2">
@@ -46,6 +51,26 @@ const choice = ref('Nuxt')
           </div>
         </UCard>
       </div>
+    </ShowcaseSection>
+
+    <ShowcaseSection id="controls" title="Form controls">
+      <UCard>
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div class="space-y-3">
+            <UCheckbox v-model="accepted" label="Checked" />
+            <UCheckbox v-model="copy" label="Unchecked" />
+            <USwitch v-model="notify" label="Notifications" />
+          </div>
+          <div class="space-y-4">
+            <URadioGroup
+              v-model="view"
+              :items="[{ label: 'List', value: 'list' }, { label: 'Grid', value: 'grid' }]"
+            />
+            <UProgress :model-value="72" />
+            <UProgress :model-value="35" size="sm" />
+          </div>
+        </div>
+      </UCard>
     </ShowcaseSection>
   </UContainer>
 </template>

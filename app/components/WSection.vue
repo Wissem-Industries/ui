@@ -7,7 +7,7 @@ withDefaults(defineProps<{ id: string; title: string; icon?: string }>(), { icon
   <section
     :id="id"
     :aria-labelledby="`${id}-title`"
-    class="scroll-mt-24 rounded-2xl bg-elevated shadow-sm ring ring-default/70"
+    class="wi-glass scroll-mt-24 rounded-2xl"
   >
     <header class="flex items-center justify-between gap-3 border-b border-default/70 px-5 py-3.5 sm:px-6">
       <h2 :id="`${id}-title`" class="flex items-center gap-2 text-sm font-semibold text-highlighted">

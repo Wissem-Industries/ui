@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+
+- Saturated violet accent from the family of the decorative shapes (`wsm-violet`: 600 `#7b1ff5` in light mode, 400 `#a05cff` in dark mode) instead of the pure electric `#7F00FF`.
+- Funnel Display for headings and Funnel Sans for text, served locally; Geist Mono stays for labels and code.
+- No solid fill: the primary button is violet glass, the secondary one a violet outline; checked checkboxes, radios, switches, solid badges, pill tabs and the active view of `WSegmented` take a violet tint with a violet edge. Violet labels keep a 4.5:1 contrast on the tint.
+- `WStatTiles`, `WSection` and `WAuthGate` use the glass material; key figures that lead to a list lift and take a violet edge. Progress bars use the violet range.
+
+### Fixed
+
+- Selected text is visible again: the selection used colour variables that Nuxt UI does not define.
+
 ## [1.3.0] - 2026-11-18
 
 ### Added

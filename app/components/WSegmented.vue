@@ -18,7 +18,7 @@ const model = defineModel<string>({ required: true })
       type="button"
       :aria-pressed="model === s.value"
       class="inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-sm font-medium transition-colors duration-(--wi-duration-fast) focus-visible:outline-2 focus-visible:outline-primary sm:h-8"
-      :class="model === s.value ? 'bg-elevated text-highlighted shadow-sm' : 'text-muted hover:text-highlighted'"
+      :class="model === s.value ? 'wi-control-on text-highlighted' : 'text-muted hover:text-highlighted'"
       @click="model = s.value"
     >
       <UIcon v-if="s.icon" :name="s.icon" class="size-4" aria-hidden="true" />
