@@ -257,6 +257,50 @@
   }
 }
 
+/*
+ * Glass blurs nothing while an ancestor fades, so whatever sits behind would
+ * show through sharp. A glass card with v-reveal or wi-enter only slides in,
+ * and its glass surface fades on its own layer.
+ */
+@keyframes wi-slide-in {
+  from {
+    transform: translateY(0.75rem);
+  }
+}
+
+@keyframes wi-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wi-glass-card.wi-reveal {
+    opacity: 1;
+    filter: none;
+  }
+
+  .wi-glass-card.wi-reveal > .wi-glass {
+    opacity: 0;
+    transition:
+      opacity var(--wi-duration-slower) var(--wi-ease-out) var(--wi-reveal-delay, 0ms),
+      box-shadow var(--wi-duration-base) var(--wi-ease-standard);
+  }
+
+  .wi-glass-card.wi-reveal--visible > .wi-glass {
+    opacity: 1;
+  }
+
+  .wi-glass-card.wi-enter {
+    animation-name: wi-slide-in;
+  }
+
+  .wi-glass-card.wi-enter > .wi-glass {
+    animation: wi-fade-in var(--wi-duration-slower) var(--wi-ease-out) both;
+    animation-delay: calc(60ms + var(--wi-enter-step, 0) * 60ms);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wi-glass-card--halo::before {
     transition: none;
