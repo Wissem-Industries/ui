@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Added
+
+- Four accent palettes available at runtime: Electric (`wsm-electric`, the former `#7F00FF`), Amethyst (`wsm-amethyst`), Dusk (`wsm-dusk`) and Plum (`wsm-plum`). An application switches with `useAppConfig().ui.colors.primary`.
+
+### Changed
+
+- Plum is the default accent. `wsm-violet` stays as an alias of Plum for existing consumers.
+- Buttons, controls, selection and progress bars read the current primary palette (`--ui-color-primary-*`); violet labels on a tint use shade 800 in light mode so that every palette keeps 4.5:1.
+
 ## [1.4.0] - 2026-11-18
 
 ### Changed

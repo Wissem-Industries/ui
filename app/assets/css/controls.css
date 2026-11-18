@@ -17,11 +17,11 @@
  * Labels take a deeper shade than the edge so that they keep a 4.5:1 contrast on the tint.
  */
 .wi-button {
-  --wi-button-label: var(--color-wsm-violet-700);
+  --wi-button-label: var(--ui-color-primary-800);
 }
 
 .dark .wi-button {
-  --wi-button-label: var(--color-wsm-violet-300);
+  --wi-button-label: var(--ui-color-primary-300);
 }
 
 /* Violet glass: a tinted surface, a light rim on top and a violet edge. */
@@ -33,7 +33,7 @@
     color-mix(in oklab, var(--ui-primary) 14%, transparent)
   );
   box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--color-wsm-violet-200) 55%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--ui-color-primary-200) 55%, transparent),
     inset 0 0 0 1px color-mix(in oklab, var(--ui-primary) 60%, transparent),
     0 8px 24px -10px color-mix(in oklab, var(--ui-primary) 70%, transparent);
 }
@@ -90,7 +90,7 @@
 }
 
 .dark .wi-switch-thumb[data-state="checked"] {
-  background: color-mix(in oklab, var(--color-wsm-violet-200) 80%, white);
+  background: color-mix(in oklab, var(--ui-color-primary-200) 80%, white);
   box-shadow: 0 0 10px color-mix(in oklab, var(--ui-primary) 65%, transparent);
 }
 
@@ -111,7 +111,7 @@
 
 /* Progress: the range of the shapes rather than a flat bar. */
 .wi-progress {
-  background: linear-gradient(90deg, var(--color-wsm-violet-300), var(--color-wsm-violet-600));
+  background: linear-gradient(90deg, var(--ui-color-primary-300), var(--ui-color-primary-600));
 }
 
 @media (prefers-reduced-motion: reduce) {
