@@ -11,6 +11,7 @@ Wissem UI est le système de design partagé et le Nuxt Layer des produits compa
 - Geist et Geist Mono sont locaux au paquet; ne pas réintroduire une dépendance aux Google Fonts pour le rendu normal.
 - L'accent primaire est un violet électrique, saturé et tirant vers le bleu (référence Figma `#7F00FF`), pas un violet grisé. Palette dédiée `wsm-violet` dans `tokens.css`, 600 en clair et 400 en sombre. Ne pas modifier les palettes Tailwind ni les couleurs secondaires ou de statut pour ajuster le primaire. Vérifier le contraste sur les pages, les cartes et les contrôles pleins.
 - Pour les boutons, `secondary` signifie toujours le style `subtle` avec l'accent primaire courant, quelle que soit la variante demandée. Ne pas lui appliquer un aplat bleu, neutre ou un autre style. Le violet plein garde un libellé blanc en sombre; les textes et liens utilisent une nuance plus lumineuse.
+- Survol des cartes `WGlassCard` : une carte statique (texte, compétences, langues, coordonnées, formulaire) garde le halo violet qui suit le pointeur, sans soulèvement ni bord violet ; une carte interactive (elle mène quelque part ou porte les actions d'un élément, comme une carte de projet) prend `interactive` : soulèvement court et bord violet, sans halo. `:halo="false"` reste une exception justifiée, pas l'usage courant. Les consommateurs ne recréent pas ces effets dans leur CSS.
 - Ce paquet n’est pas l’identité métier de produits nécessitant un système sectoriel tel que DSFR; leurs besoins restent dans leurs dépôts.
 
 ## Stack et publication
