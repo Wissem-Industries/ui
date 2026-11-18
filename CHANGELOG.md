@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-11-18
+
 ### Changed
 
 - Saturated violet accent from the family of the decorative shapes (`wsm-violet`: 600 `#7b1ff5` in light mode, 400 `#a05cff` in dark mode) instead of the pure electric `#7F00FF`.
