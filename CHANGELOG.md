@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-11-18
+
 ### Added
 
 - Four accent palettes available at runtime: Electric (`wsm-electric`, the former `#7F00FF`), Amethyst (`wsm-amethyst`), Dusk (`wsm-dusk`) and Plum (`wsm-plum`). An application switches with `useAppConfig().ui.colors.primary`.
