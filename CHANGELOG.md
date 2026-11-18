@@ -4,6 +4,14 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Added
+
+- `WGlassCard` takes an `interactive` prop for cards that lead somewhere or hold the actions of an item: a short lift and a violet edge on hover and keyboard focus, without the pointer halo. Static cards keep the halo.
+
+### Fixed
+
+- A `WGlassCard` with `v-reveal` or `wi-enter` slides in and fades its glass surface instead of the whole card, so what sits behind it stays blurred during the entrance.
+
 ### Changed
 
 - Update Nuxt layer dependencies: Tailwind CSS 4.3.5, Vue 3.5.45, Golar 0.1.11 and Biome 2.6.8. Development tooling only; the published layer is unchanged.

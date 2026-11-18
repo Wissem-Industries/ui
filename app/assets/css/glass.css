@@ -233,6 +233,90 @@
   opacity: 0.75;
 }
 
+/*
+ * Interactive card: a short lift and a violet edge. The transition repeats the
+ * v-reveal one, which it would otherwise replace on the same element.
+ */
+.wi-glass-card--interactive {
+  transition:
+    opacity var(--wi-duration-slower) var(--wi-ease-out) var(--wi-reveal-delay, 0ms),
+    filter var(--wi-duration-slower) var(--wi-ease-out) var(--wi-reveal-delay, 0ms),
+    transform var(--wi-duration-slower) var(--wi-ease-out) var(--wi-reveal-delay, 0ms),
+    translate var(--wi-duration-base) var(--wi-ease-out);
+}
+
+.wi-glass-card--interactive .wi-glass {
+  transition: box-shadow var(--wi-duration-base) var(--wi-ease-standard);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wi-glass-card--interactive:hover,
+  .wi-glass-card--interactive:focus-within {
+    --wi-glass-edge: color-mix(in oklab, var(--ui-primary) 55%, transparent);
+    translate: 0 -3px;
+  }
+}
+
+/*
+ * Glass blurs nothing while an ancestor fades, so whatever sits behind would
+ * show through sharp. A glass card with v-reveal or wi-enter only slides in,
+ * and its glass surface fades on its own layer.
+ */
+@keyframes wi-slide-in {
+  from {
+    transform: translateY(0.75rem);
+  }
+}
+
+@keyframes wi-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wi-glass-card.wi-reveal {
+    opacity: 1;
+    filter: none;
+  }
+
+  .wi-glass-card.wi-reveal > .wi-glass {
+    opacity: 0;
+    transition:
+      opacity var(--wi-duration-slower) var(--wi-ease-out) var(--wi-reveal-delay, 0ms),
+      box-shadow var(--wi-duration-base) var(--wi-ease-standard);
+  }
+
+  .wi-glass-card.wi-reveal--visible > .wi-glass {
+    opacity: 1;
+  }
+
+  .wi-glass-card.wi-enter {
+    animation-name: wi-slide-in;
+  }
+
+  .wi-glass-card.wi-enter > .wi-glass {
+    animation: wi-fade-in var(--wi-duration-slower) var(--wi-ease-out) both;
+    animation-delay: calc(60ms + var(--wi-enter-step, 0) * 60ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wi-glass-card--halo::before {
+    transition: none;
+  }
+
+  .wi-glass-card--interactive,
+  .wi-glass-card--interactive .wi-glass {
+    transition: none;
+  }
+
+  .wi-glass-card--interactive:hover,
+  .wi-glass-card--interactive:focus-within {
+    translate: none;
+  }
+}
+
 /* Scrim behind dialogs, slideovers and drawers. */
 [data-slot="overlay"] {
   background: color-mix(in oklab, var(--ui-color-neutral-950) 38%, transparent);

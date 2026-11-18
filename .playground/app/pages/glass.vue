@@ -132,9 +132,9 @@ function showToast() {
     <ShowcaseSection
       id="featured"
       title="Featured card"
-      description="Cards in a list stay flat. Only a featured card gets real glass, over an ambient halo drawn from its own image."
+      description="Cards in a list stay flat. Only a featured card gets real glass, over an ambient halo drawn from its own image. A static card answers the pointer with a violet halo; an interactive card lifts and its edge turns violet."
     >
-      <div class="grid gap-8 md:grid-cols-2">
+      <div class="grid gap-8 md:grid-cols-3">
         <WAmbient src="/cover.svg" :intensity="0.35">
           <WGlassCard class="h-full">
             <div class="space-y-3">
@@ -154,6 +154,18 @@ function showToast() {
               <p class="text-sm leading-6 text-muted">
                 With no image, the ambient layer uses the primary color.
               </p>
+            </div>
+          </WGlassCard>
+        </WAmbient>
+        <WAmbient>
+          <WGlassCard interactive class="h-full">
+            <div class="flex h-full flex-col gap-3">
+              <h3 class="text-lg font-semibold text-highlighted">Interactive card</h3>
+              <p class="text-sm leading-6 text-muted">
+                It leads somewhere or holds the actions of an item: no halo, a short
+                lift and a violet edge on hover and keyboard focus.
+              </p>
+              <UButton label="Open" to="#featured" variant="outline" color="neutral" class="mt-auto self-start" />
             </div>
           </WGlassCard>
         </WAmbient>
