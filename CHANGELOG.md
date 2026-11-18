@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-11-18
+
 ### Added
 
 - `WGlassCard` takes an `interactive` prop for cards that lead somewhere or hold the actions of an item: a short lift and a violet edge on hover and keyboard focus, without the pointer halo. Static cards keep the halo.
