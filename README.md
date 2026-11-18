@@ -12,7 +12,14 @@ Built with Nuxt 4, Vue 3, Nuxt UI 4 and Tailwind CSS 4.
 
 ## Usage
 
-The source is public, but the `@wissem-industries/ui` package is published privately on GitHub Packages, for the wissem.pro applications: installing it needs access to the organisation and a token with `read:packages` in your user `.npmrc`. Then:
+The `@wissem-industries/ui` package is public on GitHub Packages. GitHub's npm registry still asks for a token, even for a public package: add a personal access token with `read:packages` to your user `.npmrc`, next to the scope's registry.
+
+```ini
+@wissem-industries:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Then:
 
 ```bash
 bun add --dev @wissem-industries/ui
